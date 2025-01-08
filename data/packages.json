@@ -1,0 +1,267 @@
+{
+  "packages": [
+    {
+      "packageName": "Cairo, Nile Cruise, & Red Sea",
+      "availability": "Every Tuesday or Wednesday During May 2024",
+      "duration": "10 days/ 09 nights",
+      "tourType": "tour package with English speaking guide",
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Arrive Cairo 'Welcome to Egypt'",
+          "activities": "Upon your arrival at Cairo International Airport, you will be met by your Memphis Tours Representative who will accompany you to your hotel in Cairo for check-in and a free welcome drink. There you will be introduced to your Tour Manager for the trip who will explain your itinerary fully and answer all your questions. After check-in, you are free to spend the rest of the day/evening at your leisure. There is a wonderful opportunity to do an optional excursion to the Sound & Light Show on Giza Plateau, by the magnificent Pyramids.",
+          "meals": ["Welcome Drink"],
+          "accommodation": "Hotel in Cairo"
+        },
+        {
+          "day": 2,
+          "title": "Pyramids and Cairo Sightseeing",
+          "activities": "Start your day with a refreshing breakfast at your hotel. Then, meet your experienced personal guide to launch your first day of sightseeing. Visit the highlights of Cairo, starting at the Giza plateau. You'll see the Great Pyramid of Cheops, Chephren, and Mykerinus, the famous Sphinx, and the Valley Temple. Following lunch in a local restaurant, continue to the Egyptian Museum and explore its treasures, including the Treasury room of King Tutankhamen. Conclude the day by exploring Islamic Cairo and its wonders, including Khan El Khalili (Cairo's old Bazaar).",
+          "meals": ["Breakfast", "Lunch"],
+          "accommodation": "Hotel in Cairo"
+        },
+        {
+          "day": 3,
+          "title": "Fly to Aswan - Aswan sightseeing",
+          "activities": "After an early breakfast in your Cairo hotel, transfer to Cairo Airport for your flight to Aswan. Upon arrival, meet our Memphis Tours representative and commence your day of Aswan sightseeing. Visit the majestic Philae Temple, built in devotion to Isis and Hathor. Conclude the day with a visit to the Unfinished Obelisk nested in the stone quarries of Ancient Egypt.",
+          "meals": ["Breakfast", "Lunch", "Dinner"],
+          "accommodation": "Hotel in Aswan"
+        },
+        {
+          "day": 4,
+          "title": "Tour to the magnificent Abu Simbel Temples",
+          "activities": "In the early morning, you'll be picked up from your hotel in Aswan for a small group tour to Abu Simbel. Visit the two uniquely styled Temples of Abu Simbel, masterpieces of ancient Egypt. Start with the Temple of Ramses II, dedicated to four universal gods. Then, visit the Temple of Queen Nefertari, also called the Temple of Hathor. Afterwards, you'll be escorted back to your cruise ship in Aswan.",
+          "meals": ["Breakfast", "Lunch", "Dinner"],
+          "accommodation": "Nile Cruise"
+        },
+        {
+          "day": 5,
+          "title": "Kom Ombo & Edfu Temples",
+          "activities": "After breakfast onboard, sail to the splendid Kom Ombo and Edfu Temples. Begin with a visit to the twin Temple of Kom Ombo, constructed as a tribute to Sobek and Horus. After lunch onboard, head to the Temple of Edfu, one of the best-preserved temples in Egypt. In the afternoon, enjoy some relaxation with tea as you sail to Luxor, spending the night onboard your cruise.",
+          "meals": ["Breakfast", "Lunch", "Dinner"],
+          "accommodation": "Nile Cruise"
+        },
+        {
+          "day": 6,
+          "title": "Luxor Nile Cruise",
+          "activities": "After breakfast onboard, continue sailing to Luxor. Once docked, visit the West Bank of Luxor, specifically the Valley of the Kings, the royal burial ground for over 62 pharaohs. Next, visit the Temple of Queen Hatshepsut and the Colossi of Memnon. Return to the cruise ship for lunch and afternoon tea, spending the night onboard in Luxor.",
+          "meals": ["Breakfast", "Lunch", "Dinner"],
+          "accommodation": "Nile Cruise",
+          "optionalTour": {
+            "name": "Hot Air Balloon Ride Trip",
+            "price": "From $129.00",
+            "description": "A spectacular early morning sunrise adventure in this hot air balloon ride over Luxor with breathtaking views over the Valley of the Kings."
+          }
+        },
+        {
+          "day": 7,
+          "title": "East bank and Go to Hurghada",
+          "activities": "After breakfast, visit the crown jewels of Luxor's attractions: the Karnak and Luxor Temples on the East bank. Home to the biggest hypostyle hall in ancient Egyptian history, it's a sight to behold. After the tour, transfer to Hurghada (approximately 4 hours drive), a exciting resort destination on the pristine Red Sea. Check into your hotel and enjoy free time at leisure.",
+          "meals": ["Breakfast"],
+          "accommodation": "Hotel in Hurghada"
+        },
+        {
+          "day": 8,
+          "title": "Free day at Leisure in Hurghada",
+          "activities": "After breakfast, enjoy a free day to explore Hurghada. Choose from many activities such as windsurfing, sailing, and deep-sea fishing, which are just a fraction of the exciting things to do in Hurghada Red Sea Egypt.",
+          "meals": ["Breakfast"],
+          "accommodation": "Hotel in Hurghada"
+        },
+        {
+          "day": 9,
+          "title": "Hurghada & Back to Cairo",
+          "activities": "After breakfast, spend your day at leisure to relax. Later, you will be transferred to the airport for your flight to Cairo. Upon arrival in Cairo, you will be assisted and transferred to your hotel for free time.",
+          "meals": ["Breakfast"],
+          "accommodation": "Hotel in Cairo"
+        },
+        {
+          "day": 10,
+          "title": "Fly Back Home",
+          "activities": "Following breakfast, you will be met by our representative who will transfer you to Cairo Airport for your flight back home.",
+          "meals": ["Breakfast"]
+        }
+      ],
+      "accommodationPlans": [
+        {
+          "name": "Golden Accommodation Plan A (5* or similar)",
+          "hotels": [
+            {
+              "location": "Cairo",
+              "options": ["Movenpick Media City 06 Oct", "Ramses Hilton"]
+            },
+            {
+              "location": "Nile Cruise",
+              "name": "Salacia Nile Cruise"
+            },
+            {
+              "location": "Hurghada",
+              "name": "Swiss in Hurghada"
+            }
+          ],
+          "pricePerPerson": 1966,
+          "totalPriceForTwo": 3932
+        },
+        {
+          "name": "Diamond Accommodation Plan B (5* or similar)",
+          "hotels": [
+            {
+              "location": "Cairo",
+              "name": "Le Riad De chrame Hotel"
+            },
+            {
+              "location": "Nile Cruise",
+              "name": "Movenpick Royal Lily Nile cruise"
+            },
+            {
+              "location": "Hurghada",
+              "name": "Continental Hurghada"
+            }
+          ],
+          "pricePerPerson": 2370,
+          "totalPriceForTwo": 4740
+        }
+      ],
+      "inclusions": [
+        "Airport Meet & greet service",
+        "Assistance throughout your trip",
+        "Private vehicle to all transfers except in Cairo",
+        "Transfers from Luxor to Hurghada",
+        "Domestic flight Cairo/ Aswan -- Hurghada / Cairo",
+        "Accommodation in Cairo - 3 nights (breakfast included)",
+        "Accommodation in Aswan- 1 night (breakfast included)",
+        "Accommodation on 5 stars Nile Cruise - 3 nights (full board)",
+        "Accommodation in Hurghada - 2 nights (breakfast included)",
+        "Private Tours in Cairo",
+        "Group Tours onboard the Nile Cruise",
+        "Local English-speaking tour guide",
+        "Entrance fees to all sites as mentioned in the itinerary",
+        "Bottled water throughout the trip",
+        "Portage service if needed",
+        "All service charges and taxes"
+      ],
+      "exclusions": [
+        "Entry Visa to Egypt",
+        "International flights",
+        "Drinks and Personal spending",
+        "Optional excursions",
+        "Tipping"
+      ]
+    },
+    {
+      "packageName": "Cairo & Luxor Holiday Cruise",
+      "availability": "",
+      "duration": "7 days / 6 nights",
+      "tourType": "Private tour in Cairo & group tour onboard the cruise (English speaking guide)",
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Arrive Cairo 'Welcome to Egypt'",
+          "activities": "After safely Landing in Cairo International Airport, You will be assisted by a Memphis Tours Representative who will transfer you to your hotel by a private air-conditioned vehicle. Upon arrival at the Hotel, your Representative will assist you with a smooth check-in and give you detailed information concerning your pick up times during your Egypt Trip Package and sightseeing plans preparing you for one of your best trips to Cairo spending the night in your exquisite Cairo Hotel.",
+          "meals": ["Welcome Drink"],
+          "accommodation": "Hotel in Cairo"
+        },
+        {
+          "day": 2,
+          "title": "Giza Pyramids and Cairo Museum",
+          "activities": "After breakfast at your Hotel in Cairo and then you will be picked up by your personal expert English speaking Tour Guide who will accompany you to your first location and throughout your trips to Cairo. Kicking off with the Giza Plateau to visit one of the seven wonders of the ancient world, the Great Pyramids of Cheops, Chefren and Mykerinus, famous Sphinx at the Valley Temple facing the great statue. Lunch will be served at a good quality local restaurant, then Continue to visit the world-renowned Egyptian Museum in Cairo that was built in neo-classical style and designed by the French architect Marcel Dourgnon. The museum's vast collection of over 120,000 artefacts ranges from pre-dynastic era, through the Pharaonic era to the Greco-Roman period of Egypt. Amongst the most famous & fascinating items, you might encounter in all of your Egypt Trip Package are the funerary treasures of the child King Tutankhamun, the colossal statues of the heretic king, Akhenaten, and the only surviving image of Khufu, creator of Egypt's Great Pyramid. Visiting the Egyptian Museum is a great introduction to learning about the ancient Egyptian civilization, including their famous art of mummification. Finally, you will be transferred back to your hotel for an overnight stay in Cairo.",
+          "meals": ["Breakfast", "Lunch"],
+          "accommodation": "Hotel in Cairo"
+        },
+        {
+          "day": 3,
+          "title": "Fly to Aswan - Aswan sightseeing",
+          "activities": "Proceeding An early breakfast at your Hotel in Cairo, you will be transferred to Cairo Airport Domestic Terminal for your flight to Aswan in preparation for your Nile Cruise. On arrival in Aswan, you will be met by your Tour Guide and commence your day of Aswan tours, an essential part of your Egypt Trip Package starting with the ‘Unfinished Obelisk’ which still lay in the granite quarries that provided ancient Egypt with building materials. It would have been the largest piece of stone ever handled but when a crack was discovered it was abandoned where it was being hewn. Cross by boat to Agilkia Island, to see the Temple of Isis at Philae Temple which is one of the Nubian Temples rescued before the High Dam was built. Enjoy Philae’s long colonnades, towers, and reliefs which include the last surviving hieroglyphic and demotic inscriptions in Egypt. You will then embark on your Luxor Nile Cruise with time to explore the City of Aswan with dinner on board and overnight stay on the Cruise ship in Aswan on your Luxor Nile Cruise.",
+          "meals": ["Breakfast"],
+          "accommodation": "Hotel in Aswan"
+        },
+        {
+          "day": 4,
+          "title": "Kom Ombo & Edfu Temples",
+          "activities": "After breakfast onboard, sail to the splendid Kom Ombo and Edfu Temples. Begin with a visit to the twin Temple of Kom Ombo, constructed as a tribute to Sobek and Horus. After lunch onboard, head to the Temple of Edfu, one of the best-preserved temples in Egypt. In the afternoon, enjoy some relaxation with tea as you sail to Luxor, spending the night onboard your cruise.",
+          "meals": ["Breakfast", "Lunch", "Dinner"],
+          "accommodation": "Nile Cruise"
+        },
+        {
+          "day": 5,
+          "title": "Sailing to Luxor",
+          "activities": "Enjoy your breakfast onboard your Nile cruise ship while sailing to Luxor with lunch on board the vessel, then you will be guided for a wonderful exploration of the East Bank of the Nile in Luxor to Karnak Temple, the world's largest ancient religious site. The hypostyle hall with its colossal granite columns is one of Egypt’s famous landmarks. There will be free time to explore the different parts of the huge complex built during the reigns of various Pharaohs. Then you will be transferred to the majestic Luxor Temple which was built by Amenhotep III and Ramses II for ritual and festivals and dedicated to the God Amun. Lunch is provided throughout the day tours. Following lunch, you will be taken over to the West Bank of Luxor to explore West Bank of the River Nile in Luxor to the Valley of the Kings (the original resting place of the world-famous boy King Tutankhamun), and the Temple of Queen Hatshepsut (the only Female Pharaoh) at El Deir EL Bahari and the two towering statues of the Colossi of Memnon. (The three tombs visited are determined by the Egyptian Government as to preserve them from the large flow of visitors, therefore are rotated throughout the year and cannot be confirmed as to which tombs prior to your visit). After the tours, you will return to your Nile Cruise for an overnight stay Finalizing your Trips to Cairo & Egypt Trip Package.",
+          "meals": ["Breakfast", "Lunch", "Dinner"],
+          "accommodation": "Nile Cruise"
+        },
+        {
+          "day": 6,
+          "title": "Fly Luxor to Cairo",
+          "activities": "Proceeding a delicious Breakfast on your Nile Cruise boat, you will be transferred around midday to Luxor Airport for the last of your trips to Cairo International Airport, On arrival, you will be transferred back to your hotel in Cairo for an overnight stay.",
+          "meals": ["Breakfast"],
+          "accommodation": "Hotel in Cairo"
+        },
+        {
+          "day": 7,
+          "title": "Cairo - Fly Back Home",
+          "activities": "Proceed the last day of Egypt Trip Package by a Refreshing Breakfast at your Hotel in Cairo with plenty of Leisure time to do as you please before being transferred back to Cairo International Airport for your flight back home.",
+          "meals": ["Breakfast"],
+          "accommodation": "Hotel in Cairo"
+        }
+      ],
+      "accommodationPlans": [
+        {
+          "name": "Golden Accommodation Plan A (5* or similar)",
+          "hotels": [
+            {
+              "location": "Cairo",
+              "options": ["Hilton pyramids Golf ", "Le passage Hotel"]
+            },
+            {
+              "location": "Nile Cruise",
+              "name": "Salacia Nile Cruise"
+            }
+          ],
+          "pricePerPerson": null,
+          "totalPriceForTwo": null
+        },
+        {
+          "name": "Diamond Accommodation Plan B (5* or similar)",
+          "hotels": [
+            {
+              "location": "Cairo",
+              "name": [
+                "Le Riad De chrame Hotel",
+                "Steinberger Pyramids Cairo Hotel "
+              ]
+            },
+            {
+              "location": "Nile Cruise",
+              "name": "Movenpick Royal Lily Nile cruise"
+            }
+          ],
+          "pricePerPerson": null,
+          "totalPriceForTwo": null
+        }
+      ],
+      "inclusions": [
+        "Meet and greet service upon arrival and departure at all Airports from our Representatives ",
+        "The assistance of our Personnel during your stay and excursions",
+        "All airport transfers by private A/C vehicle",
+        "Domestic flight tickets from Cairo to Aswan and from Luxor to Cairo",
+        "Accommodation for 3 nights in Cairo on a Breakfast basis",
+        "Accommodation for 3 nights on 05 star Nile Cruise",
+        "Tour to Pyramids and Sphinx, Egyptian Museum in Cairo",
+        "Tour to Egyptian Museum in Cairo",
+        "All Nile Cruise excursions as mentioned in the itinerary.",
+        "Excursions to visit Philae Temple, and Unfinished Obelisk",
+        "Excursions to visit Kom Ombo Temple and Edfu Temple",
+        "Excursions to visit the Valley of the Kings, Hatshepsut Temple, and Colossi of Memnon",
+        "Excursions to visit Karnak Temple and Luxor Temple",
+        "Entrance fees to the sights throughout the tours.",
+        "Professional English-speaking Tour Guide."
+      ],
+      "exclusions": [
+        "International Airfare to Egypt",
+        "Visa Entry to Egypt",
+        "Any Optional Tours",
+        "Personal expenses",
+        "Tipping for Guides and Nile Cruise crew"
+      ]
+    }
+  ]
+}

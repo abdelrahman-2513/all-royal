@@ -1,0 +1,76 @@
+Inquiry from {{from_name}}
+
+<p>Hello {{to_name}},</p>
+
+<p>You have received a new inquiry from {{title}} {{from_name}}. Here are the details:</p>
+<p><strong>Email:</strong> {{email}}</p>
+<p><strong>Nationality:</strong> {{nationality}}</p>
+<p><strong>Mobile:</strong> {{mobile}}</p>
+<p><strong>Package ID:</strong> {{package_id}}</p>
+<p><strong>Package Name:</strong> {{package_name}}</p>
+<p><strong>Arrival Date:</strong> {{arrival}}</p>
+<p><strong>Departure Date:</strong> {{departure}}</p>
+<p><strong>Number of Adults:</strong> {{adults}}</p>
+<p><strong>Number of Children (2 to 5.99 years) :</strong> {{children1}}</p>
+<p><strong>Number of Children (6 to 11.99 years) :</strong> {{children2}}</p>
+<p><strong>Number of Infants:</strong> {{infants}}</p>
+<p><strong>Message:</strong></p>
+<p style="padding: 12px; border-left: 4px solid #d0d0d0; font-style: italic;">{{message}}</p>
+
+<p><strong>URL:</strong> <a href="{{url}}" target="_blank">{{url}}</a></p>
+<p><strong>IP Address:</strong> {{ip_address}}</p>
+<p><strong>Submission Date & Time:</strong> {{date_time}}</p>
+
+<p>
+  Best regards,<br>Your Team
+</p>
+
+
+
+
+<p>Create tour request from {{name}}. Here are the details:</p>
+
+<p><strong>Email:</strong> {{email}}</p>
+<p><strong>Nationality:</strong> {{nationality}}</p>
+<p><strong>Mobile:</strong> {{phoneNumber}}</p>
+
+<p><strong>Destinations:</strong> {{distinations}}</p>
+<p><strong>Arrival Date:</strong> {{arrival}}</p>
+<p><strong>Departure Date:</strong> {{departure}}</p>
+
+<p><strong>Estimated Month:</strong> {{month}}</p>
+<p><strong>Estimated Duration:</strong> {{duration}}</p>
+
+<p><strong>Number of Adults:</strong> {{adults}}</p>
+<p><strong>Number of Children:</strong> {{children}}</p>
+<p><strong>Number of Infants:</strong> {{infants}}</p>
+
+<p><strong>Budget:</strong> {{budget}}</p>
+
+<p><strong>URL:</strong> <a href="{{url}}" target="_blank">{{url}}</a></p>
+<p><strong>IP Address:</strong> {{ip_address}}</p>
+<p><strong>Submission Date & Time:</strong> {{date_time}}</p>
+
+
+
+
+dateInfo:
+exactDates: true
+duration: ""
+month: ""
+fromDate: Wed Oct 02 2024 03:00:00 GMT+0300 (Eastern European Summer Time)
+toDate: Wed Oct 23 2024 03:00:00 GMT+0300 (Eastern European Summer Time)
+
+destinations: Array(2)
+0: "egypt"
+1: "jordan"
+
+personalInfo: 
+adults: 1
+budget: "$2000 - $3000"
+children: 2
+email: "zalatanback@gmail.com"
+infants: 4
+name: "asd"
+nationality: "as"
+phoneNumber: "01024733987"
