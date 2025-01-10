@@ -361,7 +361,7 @@ const OnePack = ({ pack, selectedId,packages }: any) => {
 
       <PlannerBanner />
           <Packages title={"MostPopular"} items={packages} />
-        </>:<BookForm pack={pack}/>}
+        </>:<BookForm pack={pack} Children= {CustomerForm} plans={plans} lowerPrices={lowerPrices} />}
       </div>
 
     </div>

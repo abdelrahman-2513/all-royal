@@ -33,7 +33,7 @@ function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
       </div>
     );
   }
-const BookForm = ({pack}:any) => {
+const BookForm = ({pack,Children,plans,lowerPrices}:any) => {
 
     const [submitted, setSubmitted] = useState(false);
 
@@ -46,6 +46,11 @@ const BookForm = ({pack}:any) => {
       {pack && pack.NileCruisesName && (
           <h1 className="text-3xl font-bold text-blue-900 capitalize">
           {pack.NileCruisesName}
+        </h1>
+      )}
+      {pack && pack.package_name && (
+          <h1 className="text-3xl font-bold text-blue-900 capitalize">
+          {pack.package_name}
         </h1>
       )}
       <div className="mt-6">
@@ -98,7 +103,8 @@ const BookForm = ({pack}:any) => {
         </div>
       </div>
       </div>
-            <CustomerForm setSubmitted={setSubmitted} pack={pack} selectedId={pack.id}/>
+            <Children setSubmitted={setSubmitted} pack={pack} plans={plans} lowerPrices={lowerPrices} selectedId={pack.id}/>
+            {/* <CustomerForm /> */}
             </>:<FormSubmitSuccess/>}
 
         </div>

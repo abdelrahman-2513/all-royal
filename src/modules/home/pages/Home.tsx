@@ -22,7 +22,7 @@ const Home = () => {
     <div className="flex justify-center items-center max-w-full flex-col gap-4 overflow-hidden bg-[#dfefff]">
       <Hero />
       <PopularDestinations />
-      <Packages title="Best Selling Products" items={bestSellingArr} />
+      <Packages title="Best Selling Products" items={bestSellingArr} main={true}/>
       <OurPartners />
       <WhyBookWithUs />
       <FAQ />

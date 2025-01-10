@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import { CarouselSize } from "@/components/Carousel";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { Button } from "@mui/material";
+import { useLanguageAwareNavigate } from "@/i18n";
 
-const Packages = ({ items, title }: any) => {
+const Packages = ({ items, title,main=false }: any) => {
   const { t } = useTranslation();
   const [sortOption, setSortOption] = useState<string>("rate");
   const [sortedItems, setSortedItems] = useState(items);
+  const navigate = useLanguageAwareNavigate();
 
 
   useEffect(() => {
@@ -54,17 +57,27 @@ const Packages = ({ items, title }: any) => {
         >
           {t(title)}
         </motion.h1>
+        <div className="flex gap-2">
+
         <select
           value={sortOption}
           onChange={(e) => handleSort(e.target.value)}
           className="border  rounded-md p-2 bg-transparent border-[#044d88] text-[#044d88]"
-        >
+          >
           <option value="rate">Sort by Rate</option>
           <option value="priceLowToHigh">Price: Low to High</option>
           <option value="priceHighToLow">Price: High to Low</option>
           <option value="durationLowToHigh">Duration: Low to High</option>
           <option value="durationHighToLow">Duration: High to Low</option>
         </select>
+        {main &&<Button
+              variant="contained"
+              sx={{ backgroundColor: "#044d88", fontSize: "0.875rem" }}
+              onClick={() => navigate("/packages")}
+            >
+              {t("Explore Packages")}
+            </Button>}
+          </div>
       </div>
       <div className="container w-[90vw] mx-auto">
         <CarouselSize items={sortedItems} />

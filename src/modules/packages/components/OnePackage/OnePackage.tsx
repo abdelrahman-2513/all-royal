@@ -19,6 +19,8 @@ import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import Gallery from "./Gallery";
+import BookForm from "@/modules/BookTour/Pages/BookForm";
+import CustomerForm from "./CustomerForm";
 function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
   event.preventDefault();
   console.info('You clicked a breadcrumb.');
@@ -164,6 +166,8 @@ const OnePack = ({ pack, selectedId,packages }: any) => {
       <div className="w-[90vw] mx-auto flex flex-col gap-12 justify-center ">
       {pack != null &&<BasicBreadcrumbs id={pack.id} />}
         {/* Left Section */}
+        {!showFrom ? <>
+        <div className="flex flex-col  md:flex-row  w-[70vw] mx-auto md:w-[90vw] justify-center ">
         <Gallery pack={pack} dummyImageUrl={dummyImageUrl} />
 
         {/* Right Section */}
@@ -175,17 +179,7 @@ const OnePack = ({ pack, selectedId,packages }: any) => {
         /> */}
       </div>
 
-      <div className="mt-6 text-center">
-                        <Button
-                          className="bg-[#044d88] py-[12px] px-[40px] hover:bg-blue-700 text-white"
-                          onClick={handleBook}
-                          placeholder={undefined}
-                              onPointerEnterCapture={undefined}
-                              onPointerLeaveCapture={undefined}
-                        >
-                          {t("Book A Call")}
-                        </Button>
-                      </div>
+      
       {/* INCLUSIONS AND EXCLUSIONS  */}
       <IncExc inclusions={inclusions} exclusions={exclusions} />
 
@@ -286,9 +280,25 @@ const OnePack = ({ pack, selectedId,packages }: any) => {
 
       {/* ACCOMMODATION */}
       <PriceAccommodation plans={plans} getHotelsForPlan={hotels} />
+      <div className="mt-6 text-center">
+                        <Button
+                          className="bg-[#044d88] py-[12px] px-[40px] hover:bg-blue-700 text-white"
+                          onClick={handleBook}
+                          placeholder={undefined}
+                              onPointerEnterCapture={undefined}
+                              onPointerLeaveCapture={undefined}
+                        >
+                          {t("Book A Call")}
+                        </Button>
+                      </div>
           <Packages title={"More of Egypt"} items={packages.filter((pkg:any) => pkg?.countries?.includes("Egypt") )} />
           <Packages title={"More of This mood"} items={packages} />
+      
+      
       <PlannerBanner />
+      </>
+      : <BookForm pack={pack} plans={plans} lowerPrices={lowerPrices} Children={CustomerForm} />}
+      </div>
     </div>
   );
 };

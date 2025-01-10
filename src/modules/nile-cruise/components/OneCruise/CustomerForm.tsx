@@ -92,11 +92,7 @@ const CustomerForm = ({ setSubmitted, packageName, lowerPrices, plans, selectedI
       <WavyLines lineCount={4}  color="#044d88"/>
       <WavyLines lineCount={4}  color="#044d88"/>
 
-      {plans && plans.length > 0 && lowerPrices && lowerPrices.length > 0 && (
-        <h2 className="text-xl font-bold text-orange-600 mb-4">
-          {t("From US") + " "} ${Math.min(...lowerPrices)}
-        </h2>
-      )}
+      
 
       {/* Booking Form */}
       <form

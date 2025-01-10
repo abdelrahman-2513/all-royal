@@ -36,6 +36,7 @@ function Header() {
   const dispatch = useAppDispatch();
   const navigate = useLanguageAwareNavigate();
   const changeLanguage = useLanguageSwitch();
+  const listRef = useRef<HTMLUListElement>(null);
   const packages = useAppSelector((state) => state.package.package);
   // const availableLangs = ["en", "pl"];
   const { t } = useTranslation();
@@ -147,7 +148,10 @@ function Header() {
     setNestedOpen({});
   };
   const handleNavigation = (link: string) => {
+    console.log(link);
     if(link === "Nile Cruises") navigate(`/nile-cruises`);
+    if(link === "All Packages") navigate(`/packages`);
+    if (link === "Create Your Tour") navigate(`/create`); 
   }
   const handleNestedClick = (index: number) => {
     setNestedOpen((prev) => ({ ...prev, [index]: !prev[index] }));
@@ -155,23 +159,27 @@ function Header() {
 
   const links: Links = {
     Destinations: [
-      { title: "Europe", subLinks: ["France", "Italy", "Germany"] },
-      { title: "Asia", subLinks: ["Japan", "China", "India"] },
-      { title: "Africa", subLinks: ["Egypt", "Kenya", "South Africa"] },
+      { title: "Egypt", subLinks: [] },
+      { title: "Dubai", subLinks: [] },
+      { title: "Saudi Arabia", subLinks: [] },
+      { title: "Jordan", subLinks: [] },
     ],
     Packages: [
-      { title: "Standard", subLinks: [] },
+      { title: "All Packages", subLinks: [] },
       { title: "Premium", subLinks: ["VIP", "Exclusive"] },
       { title: "Luxury", subLinks: ["5-Star Hotels", "Private Jets"] },
     ],
     "Nile Cruises": [ ],
     "Create Your Tour": [
-      { title: "Custom Packages", subLinks: [] },
-      { title: "Guided Tours", subLinks: [] },
+      
     ],
     "About Us": [
-      { title: "Our Story", subLinks: [] },
-      { title: "Contact", subLinks: [] },
+      { title: "About All royal travel ", subLinks: [] },
+      { title: "Our Partners", subLinks: [] },
+      { title: "Become our partner", subLinks: [] },
+      { title: "Terms and conditions", subLinks: [] },
+      { title: "Privacy Policy", subLinks: [] },
+      { title: "Global Code of Ethics for Tourism", subLinks: [] },
     ],
   };
 
@@ -234,6 +242,7 @@ function Header() {
             <Button
               variant="contained"
               sx={{ backgroundColor: "#044d88", fontSize: "0.875rem" }}
+              onClick={() => navigate("/create")}
             >
               Book With Us
             </Button>
@@ -267,14 +276,14 @@ function Header() {
           padding: "5px 10px",
         }}
       >
-        <List>
+        <List onMouseLeave={() => setDialogOpen(false)}>
           {dialogContent.map((item, index) => (
             <React.Fragment key={index}>
               <ListItem
                 component={"button"}
                 onClick={() => handleNestedClick(index)}
               >
-                <ListItemText primary={item.title} />
+                <ListItemText primary={item.title} onClick={(e) => handleNavigation( item.title)} />
                 {item.subLinks.length > 0 ? (
                   nestedOpen[index] ? (
                     <ExpandLess />
