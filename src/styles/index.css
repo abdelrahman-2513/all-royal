@@ -32,6 +32,30 @@
 .container {
   width: 85vw;
 }
+.active-day .wavy-lines {
+  position: absolute;
+    top:20%;
+    transform: translateY(-50%);
+    right: 0;
+    
+    z-index: 15;
+}
+.form-contain .wavy-lines:first-child {
+  position: absolute;
+    top:40%;
+    transform: translateY(-50%);
+    left: 0;
+    
+    z-index: 15;
+}
+.form-contain .wavy-lines {
+  position: absolute;
+    top:40%;
+    transform: translateY(-50%);
+    right: 0;
+    
+    z-index: 15;
+}
 
 @media screen and (min-width: 1024px) {
   *::-webkit-scrollbar,

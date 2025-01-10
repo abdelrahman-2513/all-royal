@@ -24,7 +24,7 @@ export function CardDefault({ p }: any) {
   // console.log(p.NileCruisesName);
   return (
     <Card
-      className="w-full flex flex-col justify-between shadow-lg object-cover md:h-[490px]"
+      className="w-full flex flex-col border-[1px] border-[#0071cc] justify-between shadow-lg object-cover md:h-[490px]"
       placeholder={undefined}
       onPointerEnterCapture={undefined}
       onPointerLeaveCapture={undefined}

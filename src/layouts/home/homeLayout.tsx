@@ -3,6 +3,7 @@ import { useEffect } from "react";
 // import { getCurrentLang } from "@/i18n";
 import Header from "../../components/Header/Header";
 import { getCurrentLang } from "../../i18n";
+import Footer from "@/components/Footer/Footer";
 
 const HomeLayout = () => {
   const nav = useNavigate();
@@ -20,7 +21,7 @@ const HomeLayout = () => {
       <div className="w-full bg-[#eeeeee]">
         <Outlet />
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };

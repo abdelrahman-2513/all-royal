@@ -7,7 +7,7 @@ const Gallery = ({ pack }: any) => {
 
   const urls: string[] = pack.images ? pack.images : [];
   return (
-    <div className="md:w-2/3 space-y-4 max-w-full">
+     <div className="md:w-2/3 space-y-4 max-w-full mx-auto text-center">
       {pack && pack.package_name && (
         <h1 className="text-3xl font-bold text-blue-900 capitalize">
           {pack.package_name}

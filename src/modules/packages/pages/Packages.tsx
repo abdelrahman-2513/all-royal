@@ -10,7 +10,7 @@ const Packages = () => {
   if (packages && packages.length && id) {
     const requestedPackage = packages.find((p) => p.id == id);
 
-    return <OnePackage selectedId={id} pack={requestedPackage} />;
+    return <OnePackage selectedId={id} pack={requestedPackage}  packages={packages} />;
   } else {
     return <AllPackages packages={packages} />;
   }

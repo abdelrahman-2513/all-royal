@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 //log the data to the console
 
 const PriceAccommodation = ({ plans, hotels }: any) => {
@@ -13,136 +14,93 @@ const PriceAccommodation = ({ plans, hotels }: any) => {
   };
 
   return (
-    <div className="max-w-full p-6 shadow-md">
-      <h1 className="text-3xl font-bold mb-6">{t("Prices & Accommodation")}</h1>
+    <div className="max-w-full w-[90vw] mx-auto mt-8">
+      <motion.h1
+          initial={{ opacity: 0, x: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ type: "spring", stiffness: 100 }}
+          className="text-2xl font-bold text-[#0071cc]"
+        >
+          {t("Prices & Accommodation")}
+        </motion.h1>
+      <p className="my-4">{t("Please inquire for pricing over Christmas, New Year's, and Easter holidays.")}</p>
 
       {plans && plans.length > 0 ? (
-        <div className={`grid grid-cols-1 md:grid-cols-2 gap-6`}>
-          {plans.map((plan: any, index: number) => {
-            const planHotels = getHotelsForPlan(plan.id);
-            
-            return plan &&
-              plan.price_per_person_single_room &&
-              plan.price_per_person_single_room > 0 ? (
-              <div key={index} className="border border-black/5 rounded-t-3xl">
-                {plan.name && (
-                  <h2 className="text-2xl font-bold h-[75px] bg-[#003755] text-white rounded-t-3xl flex justify-center items-center">
-                    {plan.name}
-                  </h2>
-                )}
-                <div className="rounded-lg shadow-lg px-6 pb-6">
-                  {plan.price_per_person_single_room_winter &&
-                    plan.price_per_person_double_room_winter && (
-                      <div className="pb-4">
-                        <div className="mt-8">
-                          <h3 className="text-lg font-semibold mb-4">
-                            {t("MAY-SEP")}
-                          </h3>
-                          <div className="space-y-2">
-                            {plan.price_per_person_single_room && (
-                              <div className="flex justify-between">
-                                <span>{t("Per Person in Single room")}</span>
-                                <span className="text-orange-500 font-bold">
-                                  {`${t("US")} ${plan.price_per_person_single_room}`}
-                                </span>
-                              </div>
-                            )}
-                            {plan.price_per_person_double_room && (
-                              <div className="flex justify-between">
-                                <span>{t("Per Person in Double room")}</span>
-                                <span className="text-orange-500 font-bold">
-                                  {`${t("US")} ${plan.price_per_person_double_room}`}
-                                </span>
-                              </div>
-                            )}
-                          </div>
-                        </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {plans.map((plan: any, index: number) => {
+        const planHotels = getHotelsForPlan(plan.id);
 
-                        <div className="mt-8">
-                          <h3 className="text-lg font-semibold mb-4">
-                            {t("OCT-APR")}
-                          </h3>
-                          <div className="space-y-2">
-                            <div className="flex justify-between">
-                              <span>{t("Per Person in Single room")}</span>
-                              <span className="text-orange-500 font-bold">
-                                {`${t("US")} ${plan.price_per_person_single_room}`}
-                              </span>
-                            </div>
-                            <div className="flex justify-between">
-                              <span>{t("Per Person in Double room")}</span>
-                              <span className="text-orange-500 font-bold">
-                                {`${t("US")} ${plan.price_per_person_double_room}`}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                  {!plan.price_per_person_single_room_winter &&
-                    !plan.price_per_person_double_room_winter && (
-                      <div className="max-w-sm p-6 rounded-md">
-                        <h2 className="text-lg font-bold text-gray-800 mb-4">
-                          {t("Prices")}
-                        </h2>
-                        <p className="text-md text-gray-600 mb-6">
-                          {t("Price per Person")}
-                        </p>
-                        {plan.price_per_person_double_room && (
-                          <div className="flex justify-between items-center mb-4">
-                            <span className="text-sm font-medium text-gray-700">
-                              {t("Per Person in Double Room")}
-                            </span>
-                            <span className="text-lg font-bold text-orange-500">
-                              {`${t("US")} ${plan.price_per_person_double_room}`}
-                            </span>
-                          </div>
-                        )}
-                        {plan.price_per_person_single_room && (
-                          <div className="flex justify-between items-center mb-4">
-                            <span className="text-sm font-medium text-gray-700">
-                              {t("Per Person in Single Room")}
-                            </span>
-                            <span className="text-lg font-bold text-orange-500">
-                              {`${t("US")} ${plan.price_per_person_single_room}`}
-                            </span>
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  {console.log(plan)}
-                  {planHotels && planHotels.length > 0 && (
-                    <div className="mt-6 w-full">
-                      <h3 className="text-xl font-semibold mb-4">
-                        {t("Hotels")}
-                      </h3>
-                      <div className="flex flex-col space-y-2">
-                        {planHotels.map((hotel: any, hotelIndex: number) => (
-                          hotel.name && hotel.name !== "" && (
-                            <span 
-                              key={hotelIndex}
-                              className="inline-block px-4 py-2 bg-gray-100 text-gray-800 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors w-full"
-                            >
-                              {hotel.name}
-                            </span>
-                          )
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  <h1 className="my-4 pt-4 text-lg md:text-xl">
-                    {t("Please inquire for pricing over Christmas, New Year's, and Easter holidays.")}
-                  </h1>
+        return plan && plan.price_per_person_single_room && plan.price_per_person_single_room > 0 ? (
+          <div key={index} className="border border-[#044d88] rounded-2xl overflow-hidden shadow-lg">
+            {plan.name && (
+              <h2 className={`text-lg font-bold text-white py-3 text-center tracking-wide ${plan.name.includes("Golden") ? "bg-gradient-to-r from-yellow-400 to-yellow-600" : "bg-gradient-to-r from-blue-400 to-blue-600"}`}>
+                {t(plan.name)}
+              </h2>
+            )}
+            <div className="p-6 bg-white">
+              <div className="flex justify-between items-start mb-4">
+                <div>
+                  <p className="font-semibold text-[#044d88]">Movenpick Media City</p>
+                  <p className="text-sm text-gray-600 italic">Radamis I Nile Cruise</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-sm text-gray-600">{t("In Cairo")}</p>
+                  <p className="text-sm text-gray-600">{t("In Aswan")}</p>
                 </div>
               </div>
-            ) : null;
-          })}
-        </div>
-      ) : (
-        <h1 className="ml-4">{t("No Pricing Available")}</h1>
-      )}
+              <div className="space-y-6">
+                {/* May - September Prices */}
+                <div>
+                  <h3 className="text-md font-semibold text-[#044d88] border-b pb-2 mb-2">{t("May - Sep")}</h3>
+                  <div className="space-y-2">
+                    <div className="flex justify-between text-sm">
+                      <span>{t("Single Room")}</span>
+                      <span className="text-blue-600 font-bold">USD {plan.price_per_person_single_room}</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span>{t("Double Room")}</span>
+                      <span className="text-blue-600 font-bold">USD {plan.price_per_person_double_room}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* October - April Prices */}
+                <div>
+                  <h3 className="text-md font-semibold text-[#044d88] border-b pb-2 mb-2">{t("Oct - Apr")}</h3>
+                  <div className="space-y-2">
+                    <div className="flex justify-between text-sm">
+                      <span>{t("Single Room")}</span>
+                      <span className="text-blue-600 font-bold">USD {plan.price_per_person_single_room}</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span>{t("Double Room")}</span>
+                      <span className="text-blue-600 font-bold">USD {plan.price_per_person_double_room}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {planHotels && planHotels.length > 0 && (
+                <div className="mt-6">
+                  <h3 className="text-md font-semibold text-[#044d88] mb-2">{t("Hotels Included")}</h3>
+                  <ul className="list-disc ml-5 text-sm text-gray-700">
+                    {planHotels.map((hotel: any, hotelIndex: number) => (
+                      hotel.name && (
+                        <li key={hotelIndex}>{hotel.name}</li>
+                      )
+                    ))}
+                  </ul>
+                </div>
+              )}
+             
+            </div>
+          </div>
+        ) : null;
+      })}
+    </div>
+  ) : (
+    <h1 className="text-center text-lg font-semibold text-gray-600">{t("No Pricing Available")}</h1>
+  )}
     </div>
   );
 };

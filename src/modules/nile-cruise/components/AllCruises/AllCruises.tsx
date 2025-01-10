@@ -19,6 +19,11 @@ import { FaEarthAfrica } from "react-icons/fa6";
 import { GrGroup } from "react-icons/gr";
 import { SlCalender } from "react-icons/sl";
 import { useLanguageAwareNavigate } from "@/i18n";
+import HeaderCard from "@/components/HeaderCard/HeaderCard";
+import NileCruiseImage from "@/assets/homeImages/nile-cruise.jpg";
+import Packages from "@/modules/home/components/Packages";
+import PlannerBanner from "../PlannerComponent/PlannerComponent";
+import TripsGrid from "../TripsComponent/TripsComponent";
 
 const dummyImageUrl =
   "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80";
@@ -120,8 +125,10 @@ const TripFilter = ({ packages }: any) => {
     });
 
   return (
-    <div className="p-4 max-w-full min-h-[70vh]">
-      <div className="flex flex-wrap justify-between items-center mb-6 space-y-2">
+    <div className="max-w-full bg-[#dfefff] min-h-[70vh]">
+
+      <HeaderCard image={NileCruiseImage} title="Nile Cruises" desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam "/>
+      {/* <div className="flex flex-wrap justify-between items-center mb-6 space-y-2">
         <div className="flex flex-col md:flex-row md:space-x-4">
           <Select
             name="price"
@@ -146,10 +153,17 @@ const TripFilter = ({ packages }: any) => {
         >
           {isGridView ? t("List View") : t("Grid View")}
         </button>
-      </div>
+      </div> */}
 
       {/* Cards Section */}
-      <div
+      <Packages title={"Most Popular"} items={filteredTrips} />
+      <TripsGrid title={"All Packages"} filteredTrips={filteredTrips} />
+      {/* <Packages title={"All Packages"} items={filteredTrips} /> */}
+      <PlannerBanner />
+    </div>
+  );
+};
+{/* <div
         className={
           isGridView
             ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 cursor-pointer"
@@ -198,7 +212,7 @@ const TripFilter = ({ packages }: any) => {
                   onPointerLeaveCapture={undefined}
                   title={trip.package_name || trip.NileCruisesName}
                 >
-                  {/* Wooden House, Florida */}
+                  
                   {trip.package_name || trip.NileCruisesName || ""}
                 </Typography>
                 <Typography
@@ -274,7 +288,7 @@ const TripFilter = ({ packages }: any) => {
                   }
                 >
                   <span className="cursor-pointer rounded-full border border-[#003755] bg-gray-900/5 p-3 text-xl text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
-                    {/* ⌛ */}
+                   
                     <GiSandsOfTime />
                   </span>
                 </Tooltip>
@@ -286,13 +300,13 @@ const TripFilter = ({ packages }: any) => {
                   }
                 >
                   <span className="cursor-pointer rounded-full border border-[#003755] bg-gray-900/5 p-3 text-xl text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
-                    {/* 🌍 */}
+                  
                     <FaEarthAfrica />
                   </span>
                 </Tooltip>
                 <Tooltip content={trip.tour_type || trip.tourType}>
                   <span className="cursor-pointer rounded-full border border-[#003755] bg-gray-900/5 p-3 text-xl text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
-                    {/* 👥 */}
+                 
                     <GrGroup />
                   </span>
                 </Tooltip>
@@ -302,7 +316,7 @@ const TripFilter = ({ packages }: any) => {
                   }
                 >
                   <span className="cursor-pointer rounded-full border border-[#003755] bg-gray-900/5 p-3 text-xl text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
-                    {/* 📅 */}
+                  
                     <SlCalender />
                   </span>
                 </Tooltip>
@@ -334,9 +348,6 @@ const TripFilter = ({ packages }: any) => {
             </CardFooter>
           </Card>
         ))}
-      </div>
-    </div>
-  );
-};
+      </div> */}
 
 export default TripFilter;

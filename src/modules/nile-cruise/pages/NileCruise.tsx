@@ -11,7 +11,7 @@ const Packages = () => {
   if (nileCruises && nileCruises.length && id) {
     const requestedPackage = nileCruises.find((p) => p.id == id);
 
-    return <OneCruise selectedId={id} pack={requestedPackage} />;
+    return <OneCruise selectedId={id} pack={requestedPackage} packages={nileCruises} />;
   } else {
     return <AllNileCruises packages={nileCruises} />;
   }

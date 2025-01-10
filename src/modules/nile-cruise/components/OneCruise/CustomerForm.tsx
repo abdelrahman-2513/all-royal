@@ -4,8 +4,9 @@ import emailjs from "emailjs-com";
 import Modal from "./Modal/Modal";
 import ModalContent from "./Modal/ModalContent";
 import { useTranslation } from "react-i18next";
+import WavyLines from "@/components/WavyComponent/WavyComponent";
 
-const CustomerForm = ({ packageName, lowerPrices, plans, selectedId }: any) => {
+const CustomerForm = ({ setSubmitted, packageName, lowerPrices, plans, selectedId }: any) => {
   const { t } = useTranslation();
 
   const [adults, setAdults] = useState(0);
@@ -76,6 +77,7 @@ const CustomerForm = ({ packageName, lowerPrices, plans, selectedId }: any) => {
           {
             /* toast for email success mobile header and footer and landing padding web view */
           }
+          setSubmitted(true);
           console.log("SUCCESS!");
           openModal();
         },
@@ -86,7 +88,10 @@ const CustomerForm = ({ packageName, lowerPrices, plans, selectedId }: any) => {
   };
 
   return (
-    <div className="max-w-full  md:w-1/3 bg-white shadow-md rounded-md p-6">
+    <div className="max-w-full w-1/2 mx-auto mb-8   bg-[#dfefff/80] shadow-md border-[#0071cc] border-[1px] rounded-2xl p-6 form-contain">
+      <WavyLines lineCount={4}  color="#044d88"/>
+      <WavyLines lineCount={4}  color="#044d88"/>
+
       {plans && plans.length > 0 && lowerPrices && lowerPrices.length > 0 && (
         <h2 className="text-xl font-bold text-orange-600 mb-4">
           {t("From US") + " "} ${Math.min(...lowerPrices)}
@@ -98,14 +103,14 @@ const CustomerForm = ({ packageName, lowerPrices, plans, selectedId }: any) => {
         onSubmit={async (e) => {
           await handleSubmit(e);
         }}
-        className="space-y-4"
+        className="flex flex-col gap-4"
       >
-        <div className="flex flex-col md:flex-row w-full">
-          <div className="flex flex-col w-full md:w-1/4">
+        <div className="flex flex-col md:flex-row w-full gap-4 justify-between">
+          <div className="flex flex-col w-full md:w-1/4  overflow-hidden">
             <label htmlFor="title" className="text-sm font-semibold">
               {t("Title")}
             </label>
-            <select name="title" id="title" className="border p-2 h-[39.5px]">
+            <select name="title" id="title" className="border-[#0071cc] border-[1px] rounded-2xl p-2 h-[39.5px]">
               <option value="Title">{t("Title")}</option>
               <option value="Mr">{t("Mr")}</option>
               <option value="Ms">{t("Ms")}</option>
@@ -122,7 +127,7 @@ const CustomerForm = ({ packageName, lowerPrices, plans, selectedId }: any) => {
               type="text"
               id="name"
               name="from_name"
-              className="border p-2 h-[39.5px] md:w-full"
+              className="border-[#0071cc] border-[1px] rounded-2xl p-2 h-[39.5px] md:w-full"
               placeholder={t("Enter your name")}
             />
           </div>
@@ -136,7 +141,7 @@ const CustomerForm = ({ packageName, lowerPrices, plans, selectedId }: any) => {
             type="email"
             id="email"
             name="email"
-            className="border p-2"
+            className="border-[#0071cc] border-[1px] rounded-2xl p-2"
             required
           />
         </div>
@@ -149,7 +154,7 @@ const CustomerForm = ({ packageName, lowerPrices, plans, selectedId }: any) => {
             required
             name="nationality"
             id="nationality"
-            className="border p-2"
+            className="border-[#0071cc] border-[1px] rounded-2xl p-2"
           >
             <option>{t("Select your Nationality")}</option>
             {countries.map((country) => (
@@ -169,12 +174,12 @@ const CustomerForm = ({ packageName, lowerPrices, plans, selectedId }: any) => {
             type="tel"
             id="mobile"
             name="mobile"
-            className="border p-2"
+            className="border-[#0071cc] border-[1px] rounded-2xl p-2"
             placeholder={t("Mobile") + " *"}
           />
         </div>
 
-        <div className="flex flex-col md:flex-row w-full">
+        <div className="flex flex-col md:flex-row w-full gap-4">
           <div className="flex flex-col w-full md:w-1/2">
             <label className="text-sm font-semibold" htmlFor="departure">
               {t("From") + " *"}
@@ -184,7 +189,7 @@ const CustomerForm = ({ packageName, lowerPrices, plans, selectedId }: any) => {
               id="departure"
               name="departure"
               type="date"
-              className="border p-2 w-full"
+              className="border-[#0071cc] border-[1px] rounded-2xl p-2 w-full"
               placeholder={t("From") + " *"}
             />
           </div>
@@ -197,7 +202,7 @@ const CustomerForm = ({ packageName, lowerPrices, plans, selectedId }: any) => {
               id="arrival"
               name="arrival"
               type="date"
-              className="border p-2 w-full"
+              className="border-[#0071cc] border-[1px] rounded-2xl p-2 w-full"
               placeholder={t("To") + " *"}
             />
           </div>
@@ -297,7 +302,7 @@ const CustomerForm = ({ packageName, lowerPrices, plans, selectedId }: any) => {
 
         <textarea
           name="message"
-          className="border rounded-md p-2 w-full"
+          className="border-[#0071cc] border-[1px] rounded-2xl rounded-md p-2 w-full"
           placeholder={t("Please advise your tour requirements")}
         ></textarea>
 
@@ -314,15 +319,15 @@ const CustomerForm = ({ packageName, lowerPrices, plans, selectedId }: any) => {
 
         <button
           type="submit"
-          className="bg-blue-600 text-white py-2 rounded-md w-full"
+          className="bg-[#044d88] text-white py-2 rounded-md w-[200px] mx-auto mt-4"
         >
           {t("Submit")}
         </button>
       </form>
       {/* Modal */}
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
+      {/* <Modal isOpen={isModalOpen} onClose={closeModal}>
         <ModalContent />
-      </Modal>
+      </Modal> */}
     </div>
   );
 };

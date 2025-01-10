@@ -7,11 +7,46 @@ import { FaCircle } from "react-icons/fa";
 import Gallery from "./Gallery";
 import CustomerForm from "./CustomerForm";
 import IncExc from "./InclusionsExclusions";
-import PriceAccommodation from "./Accommodation";
+// import PriceAccommodation from "./Accommodation";
 import { useTranslation } from "react-i18next";
+import { Button } from "@material-tailwind/react";
+import WavyLines from "@/components/WavyComponent/WavyComponent";
+import PlannerBanner from "../PlannerComponent/PlannerComponent";
+import Packages from "@/modules/home/components/Packages";
 // import { getCurrentLang } from "@/i18n";
+import Typography from '@mui/material/Typography';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Link from '@mui/material/Link';
+import BookForm from "@/modules/BookTour/Pages/BookForm";
+import PriceAccommodation from "@/modules/packages/components/OnePackage/Accommodation";
 
-const OnePack = ({ pack, selectedId }: any) => {
+function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+  event.preventDefault();
+  console.info('You clicked a breadcrumb.');
+}
+
+const BasicBreadcrumbs = ({id}: any)=> {
+
+  console.log({id});
+  return (
+    <div role="presentation"  className="mb-3 px-5 py-2"  onClick={handleClick}>
+      <Breadcrumbs aria-label="breadcrumb" separator="›">
+        <Link underline="hover" color="#06284b" href="/en/nile-cruises">
+          Nile Crusies
+        </Link>
+        <Link
+          underline="hover"
+          color="#0071cc"
+          href={`/en/nile-cruises/${id}`}
+        >
+         <Typography sx={{ color: '#0071cc' }}>{`Cruise # ${id}`}</Typography> 
+        </Link>
+       
+      </Breadcrumbs>
+    </div>
+  );
+}
+const OnePack = ({ pack, selectedId,packages }: any) => {
   const { t } = useTranslation();
   const [itinerary, setItinerary] = useState<any>(null);
   const [itinerary2, setItinerary2] = useState<any>(null);
@@ -19,6 +54,8 @@ const OnePack = ({ pack, selectedId }: any) => {
   const [exclusions, setExclusions] = useState<any>(null);
   const [plans, setPlans] = useState<any>(null);
   const [toggleIti, setToggleIti] = useState<boolean>(true);
+  const [activeDay, setActiveDay] = useState<any>(1);
+  const [showFrom, setShowFrom] = useState<any>(false);
 
   const [lowerPrices, setLowerPrices] = useState<any[]>([]);
 
@@ -107,94 +144,143 @@ const OnePack = ({ pack, selectedId }: any) => {
   }, []);
 
   useEffect(() => {
+    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     console.log(itinerary, itinerary2, toggleIti);
   }, [itinerary, itinerary2, toggleIti]);
-
+  const handleBook = () => {
+    setShowFrom(true);
+    console.log(selectedId);
+  }
   return (
-    <div className="flex flex-col gap-12 p-6 space-x-6 md:px-16 max-w-full ">
-      <div className="flex flex-col md:flex-row p-6 space-x-6">
+    <div className=" bg-[#dfefff]  max-w-full  ">
+      
+      <div className="w-[90vw] mx-auto flex flex-col gap-12  ">
+      {pack != null &&<BasicBreadcrumbs id={pack.id} />}
+      {!showFrom ? <>
+      <div className="flex flex-col  md:flex-row  w-[70vw] mx-auto md:w-[90vw] justify-center ">
         {/* Left Section */}
         <Gallery pack={pack} dummyImageUrl={dummyImageUrl} />
-
+        
         {/* Right Section */}
-        <CustomerForm
+        {/* <CustomerForm
           selectedId={selectedId}
           plans={plans}
           lowerPrices={lowerPrices}
           packageName={pack.NileCruisesName}
-        />
+        /> */}
       </div>
+      <div className="mt-6 text-center">
+                  <Button
+                    className="bg-[#044d88] py-[12px] px-[40px] hover:bg-blue-700 text-white"
+                    onClick={handleBook}
+                    placeholder={undefined}
+                        onPointerEnterCapture={undefined}
+                        onPointerLeaveCapture={undefined}
+                  >
+                    {t("Book A Call")}
+                  </Button>
+                </div>
       {/* INCLUSIONS AND EXCLUSIONS  */}
       <IncExc inclusions={inclusions} exclusions={exclusions} />
 
       {/* ITINERARY */}
-      <div className="flex justify-start mt-8 w-full">
-        <div className="grid grid-cols-1 gap-8 w-full md:w-[75%]">
+      <div className="flex flex-col justify-space-between mt-8 w-[90vw] mx-auto">
+      <h2 className="font-bold text-xl text-[#0071cc]">{t("Itinerary")}</h2>
+
+        <div className="grid grid-cols-1 gap-8 w-full">
           {/* Itinerary Section */}
           {itinerary && toggleIti && itinerary.length > 0 && (
             <div className="w-full">
-              <div className="flex gap-16">
+              <div className="flex gap-16  justify-center bg-[#044d88] rounded-2xl  w-[fit-content] mx-auto mb-8 text-white align-center p-2 ">
                 <h2
                   onClick={() => {
+                    setActiveDay(1);
                     setToggleIti(!toggleIti);
                   }}
-                  className={`${toggleIti ? "font-bold" : "opacity-70"} cursor-pointer text-2xl mb-8`}
+                  className={`${toggleIti ? "bg-[#06284b]" : "bg-[#044d88]"} p-1 rounded-lg  cursor-pointer text-lg `}
                 >
                   {t("Aswan to Luxor")}
                 </h2>
                 <h2
                   onClick={() => {
+                    setActiveDay(1);
                     setToggleIti(!toggleIti);
                   }}
-                  className={`${toggleIti ? "opacity-70" : "font-bold"} cursor-pointer text-2xl mb-8`}
+                  className={`${toggleIti ? "bg-[#044d88]" : "bg-[#06284b]"} p-1 rounded-lg  cursor-pointer text-lg `}
                 >
                   {t("Luxor to Aswan")}
                 </h2>
               </div>
 
-              <div className="max-h-[90vh] w-full scroll-container">
-                {itinerary
-                  .sort((a: any, b: any) => a.day - b.day) // Sort by day.day
-                  .map((day: any, index: number) => (
-                    <div
-                      key={index}
-                      className="flex items-start space-x-4 mb-8"
-                    >
-                      <FaCircle className="text-yellow-500 mt-1" />
-                      <div>
-                        {day.day && day.title && (
-                          <h3 className="font-bold text-lg">
-                            {`${t("Day")} ${day.day}: ${day.title}`}
-                          </h3>
-                        )}
-                        {day.activities && <p>{day.activities}</p>}
-                        {day.meals && day.meals.length > 0 && (
-                          <>
-                            <h1 className="mt-4 font-bold">{t("Meals")}:</h1>
-                            <div className="flex gap-4">
-                              {day.meals.map((meal: any, index: number) => (
-                                <p key={meal + index} className="italic mt-2">
-                                  {meal}
-                                </p>
-                              ))}
-                            </div>
-                          </>
-                        )}
-                      </div>
+              <div className="flex space-x-2  rounded-t-md">
+        {itinerary.sort((a: any, b: any) => a.day - b.day).map((day: any, index: number) => (
+          <button
+            key={index}
+            onClick={() => setActiveDay(day.day)}
+            className={`px-4 py-2 rounded-t-md ${
+              activeDay === day.day
+                ? "bg-[#06284b] text-white"
+                : "bg-[#044d88] text-white hover:bg-gray-200"
+            }`}
+          >
+            {t("Day")} {day.day}
+          </button>
+        ))}
+      </div>
+
+      {/* Active Day Content */}
+      <div className="bg-[#0c2340] text-white p-6 rounded-b-md active-day relative h-[350px]">
+        {itinerary
+          .filter((day: any) => day.day === activeDay)
+          .map((day: any, index: number) => (
+            <div key={index} className="space-y-4">
+              <WavyLines />
+              {day.day && day.title && (
+                <h3 className="font-bold text-lg">
+                  {t("Day")} {day.day}: {day.title}
+                </h3>
+              )}
+              
+              {day.meals && day.meals.length > 0 && (
+                <div>
+                  <h4 className="mt-4 font-bold">{t("Meals")}:</h4>
+                  <div className="flex gap-4">
+                    {day.meals.map((meal: any, index: number) => (
+                      <p key={meal + index} className="italic mt-2">
+                        {meal}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {day.activities && (
+                
+                    <div  className="text-sm">
+                      {t(day.activities)}
                     </div>
-                  ))}
-              </div>
+                 
+              )}
+            </div>
+          ))}
+        
+      </div>
+      <button className="mt-6 px-4 py-2 bg-[#044d88] text-white rounded-md hover:bg-[#033366]">
+          {t("Download Itinerary")}
+        </button>
             </div>
           )}
+        
+         
+         
 
           {itinerary2 && !toggleIti && itinerary2.length > 0 && (
-            <div className="w-full">
-              <div className="flex gap-16">
+            <div className="w-full ">
+              <div className="flex gap-16  justify-center bg-[#044d88] rounded-2xl  w-[fit-content] mx-auto mb-8 text-white align-center p-2 ">
                 <h2
                   onClick={() => {
                     setToggleIti(!toggleIti);
                   }}
-                  className={`${toggleIti ? "font-bold" : "opacity-70"} cursor-pointer text-2xl mb-8`}
+                  className={`${toggleIti ? "bg-[#044d88]" : "bg-[#044d88]"} p-1 rounded-lg  cursor-pointer text-lg `}
                 >
                   {t("Aswan to Luxor")}
                 </h2>
@@ -202,44 +288,68 @@ const OnePack = ({ pack, selectedId }: any) => {
                   onClick={() => {
                     setToggleIti(!toggleIti);
                   }}
-                  className={`${toggleIti ? "opacity-70" : "font-bold"} cursor-pointer text-2xl mb-8`}
+                  className={`${!toggleIti ? "bg-[#06284b]" : "bg-[#044d88]"} cursor-pointer p-1 rounded-lg text-lg `} 
                 >
                   {t("Luxor to Aswan")}
                 </h2>
               </div>
 
-              <div className="max-h-[90vh] w-full scroll-container">
-                {itinerary2
-                  .sort((a: any, b: any) => a.day - b.day) // Sort by day.day
-                  .map((day: any, index: number) => (
-                    <div
-                      key={index}
-                      className="flex items-start space-x-4 mb-8"
-                    >
-                      <FaCircle className="text-yellow-500 mt-1" />
-                      <div>
-                        {day.day && day.title && (
-                          <h3 className="font-bold text-lg">
-                            {t("Day")} {day.day}: {day.title}
-                          </h3>
-                        )}
-                        {day.activities && <p>{day.activities}</p>}
-                        {day.meals && day.meals.length > 0 && (
-                          <>
-                            <h1 className="mt-4 font-bold">{t("Meals")}:</h1>
-                            <div className="flex gap-4">
-                              {day.meals.map((meal: any, index: number) => (
-                                <p key={meal + index} className="italic mt-2">
-                                  {meal}
-                                </p>
-                              ))}
-                            </div>
-                          </>
-                        )}
-                      </div>
+
+              <div className="flex space-x-2  rounded-t-md">
+        {itinerary2.sort((a: any, b: any) => a.day - b.day).map((day: any, index: number) => (
+          <button
+            key={index}
+            onClick={() => setActiveDay(day.day)}
+            className={`px-4 py-2 rounded-t-md ${
+              activeDay === day.day
+                ? "bg-[#06284b] text-white"
+                : "bg-[#044d88] text-white hover:bg-gray-200"
+            }`}
+          >
+            {t("Day")} {day.day}
+          </button>
+        ))}
+      </div>
+
+      {/* Active Day Content */}
+      <div className="bg-[#0c2340] text-white p-6 rounded-b-md  h-[350px] active-day">
+        {itinerary2
+          .filter((day: any) => day.day === activeDay)
+          .map((day: any, index: number) => (
+            <div key={index} className="space-y-4">
+              <WavyLines />
+              {day.day && day.title && (
+                <h3 className="font-bold text-lg">
+                  {t("Day")} {day.day}: {day.title}
+                </h3>
+              )}
+              
+              {day.meals && day.meals.length > 0 && (
+                <div>
+                  <h4 className="mt-4 font-bold">{t("Meals")}:</h4>
+                  <div className="flex gap-4">
+                    {day.meals.map((meal: any, index: number) => (
+                      <p key={meal + index} className="italic mt-2">
+                        {meal}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {day.activities && (
+                
+                    <div  className="text-sm">
+                      {t(day.activities)}
                     </div>
-                  ))}
-              </div>
+                 
+              )}
+            </div>
+          ))}
+        
+      </div>
+      <button className="mt-6 px-4 py-2 bg-[#044d88] text-white rounded-md hover:bg-[#033366]">
+          {t("Download Itinerary")}
+        </button>
             </div>
           )}
         </div>
@@ -247,6 +357,13 @@ const OnePack = ({ pack, selectedId }: any) => {
 
       {/* ACCOMMODATION */}
       <PriceAccommodation plans={plans} />
+
+
+      <PlannerBanner />
+          <Packages title={"MostPopular"} items={packages} />
+        </>:<BookForm pack={pack}/>}
+      </div>
+
     </div>
   );
 };

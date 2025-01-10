@@ -1,29 +1,55 @@
-import Galery2 from "./Try2";
-// import Galery5 from "./Try5";
-import { useTranslation } from "react-i18next";
+import Typography from '@mui/material/Typography';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Link from '@mui/material/Link';
+import CustomerForm from '@/modules/nile-cruise/components/OneCruise/CustomerForm';
+import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
+import FormSubmitSuccess from '../components/FormSubmitted';
 
-const Gallery = ({ pack }: any) => {
-  const { t } = useTranslation();
 
-  const urls: string[] = pack.images ? pack.images : [];
-  return (
-    <div className="md:w-2/3 space-y-4 max-w-full text-center">
+function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    event.preventDefault();
+    console.info('You clicked a breadcrumb.');
+  }
+  
+  const BasicBreadcrumbs = ({id}: any)=> {
+  
+    console.log({id});
+    return (
+      <div role="presentation"  className="mb-3 px-5 py-2"  onClick={handleClick}>
+        <Breadcrumbs aria-label="breadcrumb" separator="›">
+          <Link underline="hover" color="#06284b" href="/en/nile-cruises">
+            Nile Crusies
+          </Link>
+          <Link
+            underline="hover"
+            color="#0071cc"
+            href={`/en/nile-cruises/${id}`}
+          >
+           <Typography sx={{ color: '#0071cc' }}>{`Cruise # ${id}`}</Typography> 
+          </Link>
+         
+        </Breadcrumbs>
+      </div>
+    );
+  }
+const BookForm = ({pack}:any) => {
+
+    const [submitted, setSubmitted] = useState(false);
+
+    const { t } = useTranslation();
+    return (
+        <div className="w-full bg-[#dfefff] mx-auto">
+            <div className="w-[90vw] mx-auto">
+                {!submitted?<>
+            <div className="md:w-2/3 mx-auto mb-6 space-y-4 max-w-full text-center">
       {pack && pack.NileCruisesName && (
-        <h1 className="text-3xl font-bold text-blue-900 capitalize">
+          <h1 className="text-3xl font-bold text-blue-900 capitalize">
           {pack.NileCruisesName}
         </h1>
       )}
-
-      {/* Main Image and Gallery */}
-      <div className="relative">
-        <Galery2 urls={urls} />
-      </div>
-
-      {/* Overview Section */}
       <div className="mt-6">
-        <h2 className="text-2xl font-semibold text-blue-900">
-          {t("Overview")}
-        </h2>
+        
         <div className="flex md:flex-row flex-col justify-between items-center mt-4 gap-4">
           <div className="text-center mt-2">
             <div className="text-3xl text-gray-700 mb-2">⌛</div>
@@ -71,7 +97,15 @@ const Gallery = ({ pack }: any) => {
           </div>
         </div>
       </div>
-    </div>
-  );
-};
-export default Gallery;
+      </div>
+            <CustomerForm setSubmitted={setSubmitted} pack={pack} selectedId={pack.id}/>
+            </>:<FormSubmitSuccess/>}
+
+        </div>
+
+        </div>
+    )
+}
+
+
+export default BookForm;

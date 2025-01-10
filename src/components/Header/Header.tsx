@@ -134,6 +134,7 @@ function Header() {
     link: string,
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
+   
     setActiveLink(link);
     setDialogContent(links);
     setDialogAnchor(event.currentTarget);
@@ -145,7 +146,9 @@ function Header() {
     setDialogOpen(false);
     setNestedOpen({});
   };
-
+  const handleNavigation = (link: string) => {
+    if(link === "Nile Cruises") navigate(`/nile-cruises`);
+  }
   const handleNestedClick = (index: number) => {
     setNestedOpen((prev) => ({ ...prev, [index]: !prev[index] }));
   };
@@ -161,10 +164,7 @@ function Header() {
       { title: "Premium", subLinks: ["VIP", "Exclusive"] },
       { title: "Luxury", subLinks: ["5-Star Hotels", "Private Jets"] },
     ],
-    "Nile Cruises": [
-      { title: "Classic Cruise", subLinks: [] },
-      { title: "Luxury Cruise", subLinks: [] },
-    ],
+    "Nile Cruises": [ ],
     "Create Your Tour": [
       { title: "Custom Packages", subLinks: [] },
       { title: "Guided Tours", subLinks: [] },
@@ -190,7 +190,7 @@ function Header() {
             justifyContent: "space-between",
             justifyItems: "center",
             alignItems: "center",
-
+            paddingTop: "10px",
             height: "100%",
           }}
         >
@@ -199,6 +199,7 @@ function Header() {
             <img
               src={Logo}
               alt="Logo"
+              onClick={() => navigate("/")}
               style={{ width: 150, height: "60px", marginRight: 10 }}
             />
           </div>
@@ -210,11 +211,13 @@ function Header() {
                 key={link}
                 color="inherit"
                 sx={{ fontSize: "0.875rem" }}
-                onClick={(e) =>
+                className={`${activeLink === link ? "bg[gray]" : "bg[#0c2340]"}`}
+                onMouseOver={(e) =>
                   activeLink === link
                     ? handleCloseDialog()
                     : handleMenuClick(links[link], link, e)
                 }
+                onClick={(e) => handleNavigation( link)}
                 endIcon={
                   links[link].some((item) => item.subLinks.length > 0) ? (
                     <ExpandMore />

@@ -1,35 +1,66 @@
-import React from "react";
+import  { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import HiltonImage from "@/assets/homeImages/hilton.jpg";
+import JazImage from "@/assets/homeImages/jaz.jpg";
+import MovinpekImage from "@/assets/homeImages/movinpek.jpg";
+import SImage from "@/assets/homeImages/s-partener.jpg";
 
-// Partners Slider Component
 export const OurPartners = () => {
   const t = useTranslation().t;
   const partners: { image: string; name: string }[] = [
-    {
-      image: "",
-      name: "Hilton",
-    },
-    {
-      image: "",
-      name: "Jaz",
-    },
-    {
-      image: "",
-      name: "Movinpeck",
-    },
-    {
-      image: "",
-      name: "S",
-    },
+    { image: JazImage, name: "Jaz" },
+    { image: MovinpekImage, name: "Movinpeck" },
+    { image: HiltonImage, name: "Hilton" },
+    { image: SImage, name: "S" },
+    { image: HiltonImage, name: "Hilton" },
+    { image: JazImage, name: "Jaz" },
+    { image: MovinpekImage, name: "Movinpeck" },
+    { image: SImage, name: "S" },
   ];
+
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [offset, setOffset] = useState(0);
+
+  useEffect(() => {
+    const scrollContainer = scrollContainerRef.current;
+
+    if (!scrollContainer) return;
+
+    let animationFrameId: number;
+    const scrollSpeed = 1; 
+    let position = 0;
+
+    const scroll = () => {
+      position -= scrollSpeed; 
+      if (Math.abs(position) >= scrollContainer.scrollWidth / 2) {
+        position = 0; 
+      }
+      setOffset(position);
+      animationFrameId = requestAnimationFrame(scroll);
+    };
+
+    animationFrameId = requestAnimationFrame(scroll);
+
+    return () => cancelAnimationFrame(animationFrameId);
+  }, []);
+
   return (
-    <div className=" py-10 px-5 w-[90vw] md:px-15">
+    <div className="py-10 px-5 w-[90vw] md:px-15 overflow-hidden">
       <h2 className="text-xl md:text-2xl font-bold text-[#044d88] mb-8">
         {t("Our Partners")}
       </h2>
-      <div className="flex overflow-x-scroll scrollbar-hide gap-6">
-        {partners.map((partner, index) => (
+      <div
+        className="flex gap-6"
+        ref={scrollContainerRef}
+        style={{
+          display: "flex",
+          transform: `translateX(${offset}px)`,
+          transition: "transform 0.02s linear",
+          willChange: "transform",
+        }}
+      >
+        {partners.concat(partners).map((partner, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 50 }}
@@ -40,12 +71,12 @@ export const OurPartners = () => {
               damping: 25,
               duration: 0.8,
             }}
-            className="min-w-[150px] h-[100px] flex justify-center items-center bg-white shadow-md rounded-lg"
+            className="min-w-[150px] h-[100px] flex justify-center items-center bg-white overflow-hidden shadow-md rounded-lg"
           >
             <img
               src={partner.image}
               alt={partner.name}
-              className="object-contain max-w-full max-h-full"
+              className="object-cover w-full h-full"
             />
           </motion.div>
         ))}
@@ -116,8 +147,8 @@ export const WhyBookWithUs = () => {
             <div key={index} className="flex items-start gap-4">
               <span className="text-3xl text-[white">{feature.icon}</span>
               <div>
-                <h3 className="font-bold text-lg mb-1">{feature.title}</h3>
-                <p className="text-sm">{feature.description}</p>
+                <h3 className="font-bold text-lg mb-1">{t(feature.title)}</h3>
+                <p className="text-sm">{t(feature.description)}</p>
               </div>
             </div>
           ))}
@@ -129,6 +160,7 @@ export const WhyBookWithUs = () => {
 
 // FAQ Component
 export const FAQ = () => {
+  const { t } = useTranslation();
   const questions = [
     { question: "This is Question #1" },
     { question: "This is Question #2" },
@@ -149,7 +181,7 @@ export const FAQ = () => {
           >
             <span className="text-2xl text-[#044d88]">+</span>
             <span className="text-lg font-bold text-[#044d88]">
-              {q.question}
+              {t(q.question)}
             </span>
           </div>
         ))}
