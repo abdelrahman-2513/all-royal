@@ -2,7 +2,8 @@ import { useState } from "react";
 import { DestinationStep } from "../components/DestinationStep";
 import { DateStep } from "../components/DateStep";
 import { PersonalInfoStep } from "../components/PersonalInfoStep";
-
+import {motion} from "framer-motion";
+import { useTranslation } from "react-i18next";
 interface PackageData {
   destinations: string[];
   dateInfo: {
@@ -26,6 +27,7 @@ interface PackageData {
 
 function Create() {
   const [step, setStep] = useState(1);
+  const { t } = useTranslation();
   const [packageData, setPackageData] = useState<PackageData>({
     destinations: [],
     dateInfo: { exactDates: true },
@@ -67,6 +69,18 @@ function Create() {
   return (
     <div className="max-w-full min-h-[70vh] bg-[#dfefff]">
       <div className="w-[90vw] mx-auto">
+      <div className="flex justify-between items-center ">
+        <motion.h1
+          initial={{ opacity: 0, x: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ type: "spring", stiffness: 100 }}
+          className="text-2xl mt-5 px-5 font-bold text-[#0071cc]"
+        >
+          {t("Create Your Tour")}
+        </motion.h1>
+        </div>
+       
 
       {step === 1 && <DestinationStep onSubmit={handleDestinationSubmit} />}
       {step === 2 && (

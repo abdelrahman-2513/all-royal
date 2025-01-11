@@ -54,7 +54,6 @@ export const PersonalInfoStep: React.FC<PersonalInfoStepProps> = ({
   const [ip, setIp] = useState("");
 
   const openModal = () => {
-    console.log("sent");
     setIsModalOpen(true);
   };
 
@@ -75,10 +74,9 @@ export const PersonalInfoStep: React.FC<PersonalInfoStepProps> = ({
     }));
   };
 
-  // useEffect to set interval for updating dateTime
   useEffect(() => {
-    const intervalId = setInterval(updateDateTime, 30000); // 30000 ms = 30 seconds
-    return () => clearInterval(intervalId); // Cleanup interval on component unmount
+    const intervalId = setInterval(updateDateTime, 30000);
+    return () => clearInterval(intervalId);
   }, []);
 
   useEffect(() => {
@@ -89,14 +87,12 @@ export const PersonalInfoStep: React.FC<PersonalInfoStepProps> = ({
     try {
       const response = await fetch("https://api.ipify.org?format=json");
       const data = await response.json();
-
       setIp(data.ip);
     } catch (error) {
       console.error("Error fetching IP:", error);
     }
   };
 
-  // Function to update dateTime every 30 seconds
   const updateDateTime = () => {
     setDateTime(new Date().toLocaleString());
   };
@@ -113,10 +109,6 @@ export const PersonalInfoStep: React.FC<PersonalInfoStepProps> = ({
       )
       .then(
         () => {
-          {
-            /* toast for email success mobile header and footer and landing padding web view */
-          }
-          console.log("SUCCESS!");
           openModal();
         },
         (error) => {
@@ -126,122 +118,151 @@ export const PersonalInfoStep: React.FC<PersonalInfoStepProps> = ({
   };
 
   return (
+    <div className="pb-5">
+      <h2 className="text-xl font-semibold text-center text-[#06284b] mb-6">
+        {t("Tell Us About The Travelers")}
+      </h2>
     <form
       onSubmit={handleSubmit}
-      className="max-w-xl mx-auto p-6 bg-white rounded-md shadow-md mb-8 mt-4"
+      className="max-w-lg mx-auto p-6 bg-blue-50 rounded-lg shadow-lg border border-blue-200"
     >
-      <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-        {t("Tell us about the travelers")}{" "}
-      </h2>
+      
 
-      {/* Name */}
-      <label className="block mb-2 text-gray-700">{t("Name")}:</label>
-      <input
-        type="text"
-        name="name"
-        value={personalInfo.name}
-        onChange={handleChange}
-        placeholder={t("Enter your name")}
-        required
-        className="w-full mb-4 p-2 border border-gray-300 rounded-md"
-      />
+      {/* Title & Name */}
+      <div className="flex flex-row gap-4 mb-4">
+       <div className="w-1/4">
+    <label htmlFor=""> Title</label>
+        <input
+          type="text"
+          name="title"
+          placeholder={t("Title")}
+          className="w-full p-2 border border-[#0071cc] rounded-md focus:outline-none"
+          />
+          </div>
+          <div className="w-3/4">
+        <label htmlFor=""> Full Name</label>
+        <input
+          type="text"
+          name="name"
+          value={personalInfo.name}
+          onChange={handleChange}
+          placeholder={t("Type Full Name")}
+          required
+          className="w-full p-2 border border-[#0071cc] rounded-md focus:outline-none"
+          />
+          </div>
+      </div>
 
-      {/* Email */}
-      <label className="block mb-2 text-gray-700">{t("Email")}:</label>
+      {/* E-Mail */}
+      <div>
+<label htmlFor="">Email</label>
       <input
         type="email"
         name="email"
         value={personalInfo.email}
         onChange={handleChange}
-        placeholder={t("Enter your email")}
+        placeholder={t("Enter Your E-Mail")}
         required
-        className="w-full mb-4 p-2 border border-gray-300 rounded-md"
-      />
+        className="w-full mb-4 p-2 border border-[#0071cc] rounded-md focus:outline-none"
+        />
+        </div>
 
       {/* Nationality */}
-      <label className="block mb-2 text-gray-700">{t("Nationality")}:</label>
+      <div>
+<label>Nationality</label>
       <input
         type="text"
         name="nationality"
         value={personalInfo.nationality}
         onChange={handleChange}
-        placeholder={t("Enter your nationality")}
+        placeholder={t("Nationality")}
+        
         required
-        className="w-full mb-4 p-2 border border-gray-300 rounded-md"
-      />
-
-      {/* Phone Number */}
-      <label className="block mb-2 text-gray-700">{t("Phone Number")}:</label>
-      <input
-        type="tel"
-        name="phoneNumber"
-        value={personalInfo.phoneNumber}
-        onChange={handleChange}
-        placeholder={t("Enter your phone number")}
-        required
-        className="w-full mb-4 p-2 border border-gray-300 rounded-md"
-      />
-
-      {/* Number of Adults */}
-      <div className="grid grid-cols-3 gap-4 mb-4">
-        <label className="block text-gray-700">{t("Adults")}:</label>
-        <input
-          type="number"
-          name="adults"
-          value={personalInfo.adults}
-          onChange={handleChange}
-          min="0"
-          required
-          className="p-2 border border-gray-300 rounded-md"
+        className="w-full mb-4 p-2 border border-[#0071cc] rounded-md focus:outline-none"
         />
+        </div>
+
+      {/* Country Code & Mobile Number */}
+      <div className="flex flex-row gap-4 mb-4">
+        <div className="w-1/4">
+<label>Country</label>
+        <input
+          type="text"
+          value="+20"
+          disabled
+          className="w-full p-2 border border-[#0071cc] rounded-md bg-gray-100"
+          />
+          </div>
+          <div className="w-3/4">
+<label htmlFor="">Phone Number</label>
+        <input
+          type="tel"
+          name="phoneNumber"
+          value={personalInfo.phoneNumber}
+          onChange={handleChange}
+          placeholder={t("Phone Number")}
+          required
+          className="w-full p-2 border border-[#0071cc] rounded-md"
+          />
+          </div>
       </div>
 
-      {/* Number of Children */}
-      <div className="grid grid-cols-3 gap-4 mb-4">
-        <label className="block text-gray-700">{t("Children")}:</label>
-        <input
-          type="number"
-          name="children"
-          value={personalInfo.children}
-          onChange={handleChange}
-          min="0"
-          required
-          className="p-2 border border-gray-300 rounded-md"
-        />
-      </div>
+      {/* Number Inputs */}
+      {[
+  { label: "Number Of Adults (+12 Years)", name: "adults" },
+  { label: "Number Of Children (6 To 11.99 Years)", name: "children" },
+  { label: "Number Of Children (2 To 5.99 Years)", name: "children" },
+  { label: "Number Of Infants (0 To 2 Years)", name: "infants" },
+].map(({ label, name }) => (
+  <div key={name} className="flex items-center justify-between mb-4">
+    <span>{t(label)}</span>
+    <div className="flex items-center gap-2">
+      <button
+        type="button"
+        onClick={() =>
+          setPersonalInfo((prev) => ({
+            ...prev,
+            [name]: Math.max(0, prev[name as "adults" | "children" | "infants"] - 1),
+          }))
+        }
+        className="w-8 h-8 bg-gray-200 rounded-md"
+      >
+        -
+      </button>
+      <span>{personalInfo[name as "adults" | "children" | "infants"]}</span>
+      <button
+        type="button"
+        onClick={() =>
+          setPersonalInfo((prev) => ({
+            ...prev,
+            [name]: prev[name as "adults" | "children" | "infants"] + 1,
+          }))
+        }
+        className="w-8 h-8 bg-gray-200 rounded-md"
+      >
+        +
+      </button>
+    </div>
+  </div>
+))}
 
-      {/* Number of Infants */}
-      <div className="grid grid-cols-3 gap-4 mb-4">
-        <label className="block text-gray-700">
-          {t("Infants (0 to 2 years)")}:
-        </label>
-        <input
-          type="number"
-          name="infants"
-          value={personalInfo.infants}
-          onChange={handleChange}
-          min="0"
-          required
-          className="p-2 border border-gray-300 rounded-md"
-        />
-      </div>
 
       {/* Budget */}
-      <label className="block mb-2 text-gray-700">
-        {t("Budget per person")}:
-      </label>
+      <div>
+      <label htmlFor="">Budget</label>
       <select
         name="budget"
         value={personalInfo.budget}
         onChange={handleChange}
         required
-        className="w-full p-2 border border-gray-300 rounded-md mb-6"
+        className="w-full mb-6 p-2 border border-[#0071cc] rounded-md"
       >
-        <option value="">{t("Select your budget")}</option>
-        <option value="$1000 - $2000">$1000 - $2000</option>
-        <option value="$2000 - $3000">$2000 - $3000</option>
+        <option value="">{t("Budget Per Person")}</option>
+        <option value="$1000">$1000</option>
+        <option value="$2000">$2000</option>
         <option value="$3000 & up">{t("$3000 & up")}</option>
       </select>
+      </div>
 
       {!packageData.dateInfo.exactDates ? (
         <>
@@ -282,13 +303,16 @@ export const PersonalInfoStep: React.FC<PersonalInfoStepProps> = ({
       {/* Submit Button */}
       <button
         type="submit"
-        className="w-full bg-[#044d88] text-white py-2 px-4 rounded-md hover:bg-blue-700"
+        className="w-[200px] mx-auto block bg-[#044d88] text-white py-2 rounded-md hover:bg-blue-900 transition"
       >
         {t("Submit")}
       </button>
+
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <ModalContent />
       </Modal>
     </form>
+    </div>
+
   );
 };

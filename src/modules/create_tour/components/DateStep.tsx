@@ -48,25 +48,25 @@ export const DateStep: React.FC<DateStepProps> = ({ onSubmit, onBack }) => {
 
   return (
     <form onSubmit={handleSubmit} className="max-w-3xl mx-auto p-6">
-      <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+      <h2 className="text-2xl font-semibold text-[#06284b] mb-4 text-center">
         When will you travel?
       </h2>
       <div className="mb-6">
-        <label className="flex items-center mb-4">
+        <label className="flex items-center mb-4 text-[#06284b] font-semibold">
           <input
             type="radio"
             checked={exactDates}
             onChange={() => setExactDates(true)}
-            className="mr-2"
+            className="mr-2 accent-[#0071cc] "
           />
           {t("I know the exact dates of my trip")}
         </label>
-        <label className="flex items-center">
+        <label className="flex items-center text-[#06284b] font-semibold">
           <input
             type="radio"
             checked={!exactDates}
             onChange={() => setExactDates(false)}
-            className="mr-2"
+            className="mr-2 accent-[#0071cc] "
           />
           {t("I have approximate dates")}
         </label>
@@ -75,33 +75,33 @@ export const DateStep: React.FC<DateStepProps> = ({ onSubmit, onBack }) => {
       {exactDates ? (
         <div className="grid grid-cols-2 gap-4 mb-6">
           <label className="flex flex-col">
-            <span className="mb-2 text-gray-700">{t("Departure Date")}:</span>
+            <span className="mb-2 text-[#06284b] font-semibold">{t("Departure Date")}:</span>
             <input
               type="date"
               onChange={(e) => setFromDate(new Date(e.target.value))}
               required
-              className="border border-gray-300 rounded-md p-2"
+              className="border border-[#0071cc] rounded-xl h-10 p-2"
             />
           </label>
           <label className="flex flex-col">
-            <span className="mb-2 text-gray-700">{t("Return Date")}:</span>
+            <span className="mb-2 text-[#06284b] font-semibold">{t("Return Date")}:</span>
             <input
               type="date"
               onChange={(e) => setToDate(new Date(e.target.value))}
               required
-              className="border border-gray-300 rounded-md p-2"
+              className="border border-[#0071cc] color-[#06284b] rounded-xl h-10 p-2"
             />
           </label>
         </div>
       ) : (
         <div className="grid grid-cols-2 gap-4 mb-6">
           <label className="flex flex-col">
-            <span className="mb-2 text-gray-700">{t("Which month?")}</span>
+            <span className="mb-2 text-[#06284b] font-semibold">{t("Which month?")}</span>
             <select
               value={month}
               onChange={(e) => setMonth(e.target.value)}
               required
-              className="border border-gray-300 rounded-md p-2"
+              className="border border-[#0071cc] rounded-xl p-2"
             >
               <option value="">{t("Select a month")}</option>
               {[
@@ -125,12 +125,12 @@ export const DateStep: React.FC<DateStepProps> = ({ onSubmit, onBack }) => {
             </select>
           </label>
           <label className="flex flex-col">
-            <span className="mb-2 text-gray-700">{t("How long (approx)")}?</span>
+            <span className="mb-2 text-[#06284b] font-semibold">{t("How long (approx)")}?</span>
             <select
               value={duration}
               onChange={(e) => setDuration(e.target.value)}
               required
-              className="border border-gray-300 rounded-md p-2"
+              className="border border-[#0071cc] rounded-xl p-2"
             >
               <option value="">{t("Select duration")}</option>
               <option value="suggestion">{t("Give me a suggestion")}</option>
@@ -147,13 +147,13 @@ export const DateStep: React.FC<DateStepProps> = ({ onSubmit, onBack }) => {
         <button
           type="button"
           onClick={onBack}
-          className="bg-gray text-gray-700 py-2 px-6 rounded-md"
+          className="bg-gray text-[#06284b] font-semibold py-2 px-6 rounded-md"
         >
           {t("Back")}
         </button>
         <button
           type="submit"
-          className="bg-[#044d88] text-white py-2 px-6 rounded-md hover:bg-blue-700"
+          className="bg-[#06284b] text-white py-2 px-6 rounded-md hover:bg-blue-700"
         >
           {t("Next Step")}
         </button>

@@ -67,7 +67,7 @@ export const DestinationStep: React.FC<DestinationStepProps> = ({
   return (
     <div className="px-4 py-6 max-w-7xl mx-auto">
       <h2 className="text-center text-xl md:text-2xl font-semibold text-blue-900 mb-6 md:mb-8">
-        {t("Where do you want to go")}?
+        {t("Choose Your Destination")}?
       </h2>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
@@ -75,14 +75,17 @@ export const DestinationStep: React.FC<DestinationStepProps> = ({
             <div
               key={destination.id}
               onClick={() => toggleDestination(destination.id)}
-              className={`relative cursor-pointer group touch-manipulation ${
+              className={`relative cursor-pointer group touch-manipulation p-2 ${
                 selectedDestinations.includes(destination.id)
                   ? "bg-gray/100 border-1 rounded-lg border-blue-900"
-                  : ""
+                  : "bg-white border-1 rounded-lg border-blue-900"
               }`}
             >
               <div className="flex flex-col items-center">
-                <div className="relative w-full pb-[100%] rounded-full overflow-hidden mb-2 md:mb-3">
+              <span className="text-l md:text-sm font-medium text-[#044d88] font-semibold text-center">
+                  {destination.name}
+                </span>
+                <div className="relative w-full rounded-lg h-[150px] overflow-hidden mb-2 md:mb-3">
                   <div className="absolute inset-0 transition-transform duration-300 transform group-hover:-translate-y-1 md:group-hover:-translate-y-2">
                     <img
                       src={destination.imageUrl}
@@ -90,15 +93,13 @@ export const DestinationStep: React.FC<DestinationStepProps> = ({
                       className="w-full h-full object-cover"
                     />
                     {selectedDestinations.includes(destination.id) && (
-                      <div className="absolute top-1 right-1 md:top-2 md:right-2 bg-green-500 rounded-full p-0.5 md:p-1">
+                      <div className="absolute top-1 right-1 md:top-2 md:right-2 bg-green-500 rounded-lg p-0.5 md:p-1">
                         <Check className="w-3 h-3 md:w-4 md:h-4 text-white" />
                       </div>
                     )}
                   </div>
                 </div>
-                <span className="text-l md:text-sm font-medium text-gray-700 text-center">
-                  {destination.name}
-                </span>
+                
               </div>
             </div>
           ))}
@@ -108,7 +109,7 @@ export const DestinationStep: React.FC<DestinationStepProps> = ({
             type="submit"
             disabled={selectedDestinations.length === 0}
             className={`
-              w-full sm:w-auto px-6 py-3 rounded-md text-white font-medium text-sm md:text-base
+              w-full sm:w-auto px-8 py-2 rounded-md text-white font-medium text-sm md:text-base
               ${
                 selectedDestinations.length === 0
                   ? "bg-[#044d88] cursor-not-allowed"
