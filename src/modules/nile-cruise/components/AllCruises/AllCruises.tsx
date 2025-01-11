@@ -24,6 +24,7 @@ import NileCruiseImage from "@/assets/homeImages/nile-cruise.jpg";
 import Packages from "@/modules/home/components/Packages";
 import PlannerBanner from "../PlannerComponent/PlannerComponent";
 import TripsGrid from "../TripsComponent/TripsComponent";
+import WavyLines from "@/components/WavyComponent/WavyComponent";
 
 const dummyImageUrl =
   "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80";
@@ -125,8 +126,15 @@ const TripFilter = ({ packages }: any) => {
     });
 
   return (
-    <div className="max-w-full bg-[#dfefff] min-h-[70vh]">
+    <div className="max-w-full bg-[#dfefff] min-h-[70vh] page">
+ <div className="wave">
 
+<WavyLines lineCount={4} color="#0071cc"/>
+</div>
+ <div className="wave">
+
+<WavyLines lineCount={4} color="#0071cc"/>
+</div>
       <HeaderCard image={NileCruiseImage} title="Nile Cruises" desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam "/>
       {/* <div className="flex flex-wrap justify-between items-center mb-6 space-y-2">
         <div className="flex flex-col md:flex-row md:space-x-4">

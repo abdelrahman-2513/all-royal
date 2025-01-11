@@ -18,8 +18,11 @@ const HomeLayout = () => {
   return (
     <div className="w-full font-sans">
       <Header />
-      <div className="w-full bg-[#eeeeee]">
+      <div className="w-full bg-[#dfefff] ">
+     
+
         <Outlet />
+        
       </div>
       <Footer />
     </div>

@@ -6,6 +6,9 @@ import packagesRoutes from "../modules/packages/routes";
 import createRoutes from "@/modules/create_tour/routes";
 import nileCruisesRoutes from "@/modules/nile-cruise/routes";
 import aboutRoutes from "@/modules/about/routes";
+import ourPartnersRoutes from "@/modules/our partners/routes";
+import becomeOurPartner from "@/modules/become-our-partner/routes";
+
 import whyBookWithUsRoutes from "@/modules/whybookwithus/routes";
 import termsAndConditionsRoutes from "@/modules/terms-and-conditions/routes";
 import privacyPolicyRoutes from "@/modules/privacy-policy/routes";
@@ -38,6 +41,17 @@ const publicRouter = createBrowserRouter([
     path: "/:lang/about",
     element: <HomeLayout />,
     children: [...aboutRoutes],
+  },
+ 
+  {
+    path: "/:lang/our-partners",
+    element: <HomeLayout />,
+    children: [...ourPartnersRoutes],
+  },
+  {
+    path: "/:lang/become-our-partner",
+    element: <HomeLayout />,
+    children: [...becomeOurPartner],
   },
   {
     path: "/:lang/whyBookWithUs",

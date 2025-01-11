@@ -18,9 +18,15 @@ import { setActive } from "@/hooks/redux/homeSlice";
 import { useLanguageAwareNavigate, useLanguageSwitch } from "@/i18n";
 import { useTranslation } from "react-i18next";
 
+interface SubLinkItem {
+  name: string;
+  id: string;
+}
+
 interface SubLink {
   title: string;
-  subLinks: string[];
+  id: string;
+  subLinks: SubLinkItem[];  // Updated to hold objects instead of strings
 }
 
 interface Links {
@@ -152,6 +158,13 @@ function Header() {
     if(link === "Nile Cruises") navigate(`/nile-cruises`);
     if(link === "All Packages") navigate(`/packages`);
     if (link === "Create Your Tour") navigate(`/create`); 
+    if (link === "About All Royal Travel" ) navigate(`/about`); 
+    if (link === "Privacy Policy") navigate(`/privacy-policy`); 
+    if(link === "Our Partners") navigate(`/our-partners`);
+    if( link === "Become Our Partner" ) navigate(`/become-our-partner`);
+    if (link === "Global Code of Ethics for Tourism") navigate(`/global-code-of-ethics`); 
+    if (link === "Terms and Conditions") navigate(`/terms-and-conditions`); 
+    // else navigate(`/about`); 
   }
   const handleNestedClick = (index: number) => {
     setNestedOpen((prev) => ({ ...prev, [index]: !prev[index] }));
@@ -159,29 +172,66 @@ function Header() {
 
   const links: Links = {
     Destinations: [
-      { title: "Egypt", subLinks: [] },
-      { title: "Dubai", subLinks: [] },
-      { title: "Saudi Arabia", subLinks: [] },
-      { title: "Jordan", subLinks: [] },
+      { title: "Egypt", id: "egypt", subLinks: [] },
+      { title: "Dubai", id: "dubai", subLinks: [] },
+      { title: "Saudi Arabia", id: "saudi-arabia", subLinks: [] },
+      { title: "Jordan", id: "jordan", subLinks: [] },
     ],
     Packages: [
-      { title: "All Packages", subLinks: [] },
-      { title: "Premium", subLinks: ["VIP", "Exclusive"] },
-      { title: "Luxury", subLinks: ["5-Star Hotels", "Private Jets"] },
+      { title: "All Packages", id: "all-packages", subLinks: [] },
+      {
+        title: "Egypt's Packages",
+        id: "egypt-packages",
+        subLinks: packages
+          .filter((pkg) => pkg?.countries?.includes("Egypt"))
+          .map((pkg) => ({
+            name: pkg.package_name,
+            id: pkg.id,
+          })),
+      },
+      {
+        title: "Jordan's Packages",
+        id: "jordan-packages",
+        subLinks: packages
+          .filter((pkg) => pkg?.countries?.includes("Jordan"))
+          .map((pkg) => ({
+            name: pkg.package_name,
+            id: pkg.id,
+          })),
+      },
+      {
+        title: "Dubai's Packages",
+        id: "dubai-packages",
+        subLinks: packages
+          .filter((pkg) => pkg?.countries?.includes("Dubai"))
+          .map((pkg) => ({
+            name: pkg.package_name,
+            id: pkg.id,
+          })),
+      },
+      {
+        title: "Saudi Arabia's Packages",
+        id: "saudi-packages",
+        subLinks: packages
+          .filter((pkg) => pkg?.countries?.includes("Saudi Arabia"))
+          .map((pkg) => ({
+            name: pkg.package_name,
+            id: pkg.id,
+          })),
+      },
     ],
-    "Nile Cruises": [ ],
-    "Create Your Tour": [
-      
-    ],
+    "Nile Cruises": [],
+    "Create Your Tour": [],
     "About Us": [
-      { title: "About All royal travel ", subLinks: [] },
-      { title: "Our Partners", subLinks: [] },
-      { title: "Become our partner", subLinks: [] },
-      { title: "Terms and conditions", subLinks: [] },
-      { title: "Privacy Policy", subLinks: [] },
-      { title: "Global Code of Ethics for Tourism", subLinks: [] },
+      { title: "About All Royal Travel", id: "about", subLinks: [] },
+      { title: "Our Partners", id: "partners", subLinks: [] },
+      { title: "Become Our Partner", id: "become-partner", subLinks: [] },
+      { title: "Terms and Conditions", id: "terms", subLinks: [] },
+      { title: "Privacy Policy", id: "privacy", subLinks: [] },
+      { title: "Global Code of Ethics for Tourism", id: "ethics", subLinks: [] },
     ],
   };
+  
 
   return (
     <AppBar
@@ -273,6 +323,9 @@ function Header() {
           background: "#0c2340",
           color: "white",
           borderRadius: "0.5em",
+          maxHeight:"300px",
+          width:"350px",
+          overflow: "auto",
           padding: "5px 10px",
         }}
       >
@@ -281,9 +334,10 @@ function Header() {
             <React.Fragment key={index}>
               <ListItem
                 component={"button"}
-                onClick={() => handleNestedClick(index)}
+                onClick={() => ["Egypt","Saudi Arabia","Dubai","Jordan"].includes(item.title) ?filterByPlace(item.title):handleNestedClick(index)}
+                
               >
-                <ListItemText primary={item.title} onClick={(e) => handleNavigation( item.title)} />
+                <ListItemText primary={item.title}  onClick={()=> item.subLinks.length == 0 && handleNavigation(item.title)}/>
                 {item.subLinks.length > 0 ? (
                   nestedOpen[index] ? (
                     <ExpandLess />
@@ -299,8 +353,12 @@ function Header() {
                       component={"button"}
                       key={subIndex}
                       sx={{ pl: 4 }}
+                      onClick={() => {
+                        navigate("/packages/" + subItem.id);
+                        window.location.reload();
+                      }}
                     >
-                      <ListItemText primary={subItem} />
+                      <ListItemText primary={subItem.name} />
                     </ListItem>
                   ))}
                 </List>

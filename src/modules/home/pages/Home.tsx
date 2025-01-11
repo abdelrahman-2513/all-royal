@@ -5,6 +5,7 @@ import NileCruise from "../components/NileCruise";
 import { useAppSelector } from "@/hooks/hooks";
 import PopularDestinations from "../components/Destinations";
 import { FAQ, OurPartners, WhyBookWithUs } from "../components/Parteners";
+import WavyLines from "@/components/WavyComponent/WavyComponent";
 
 const Home = () => {
   const nileCruisesArr = useAppSelector((state) => state.nileCruise.nileCruise);
@@ -19,8 +20,17 @@ const Home = () => {
   );
 
   return (
-    <div className="flex justify-center items-center max-w-full flex-col gap-4 overflow-hidden bg-[#dfefff]">
+    <div className="flex justify-center items-center max-w-full flex-col gap-4 overflow-hidden bg-[#dfefff] page">
+       <div className="wave">
+
+<WavyLines lineCount={4} color="#0071cc"/>
+</div>
+<div className="wave">
+
+<WavyLines lineCount={4} color="#0071cc"/>
+</div>
       <Hero />
+
       <PopularDestinations />
       <Packages title="Best Selling Products" items={bestSellingArr} main={true}/>
       <OurPartners />

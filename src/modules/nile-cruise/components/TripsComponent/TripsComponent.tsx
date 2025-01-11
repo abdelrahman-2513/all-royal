@@ -34,9 +34,9 @@ const TripsGrid = ({title, filteredTrips }:any) => {
       case "rate":
         return [...filteredTrips].sort((a, b) => b.rate - a.rate);
       case "priceLowToHigh":
-        return [...filteredTrips].sort((a, b) => a.price - b.price);
+        return [...filteredTrips].sort((a, b) => a.priceFrom - b.priceFrom);
       case "priceHighToLow":
-        return [...filteredTrips].sort((a, b) => b.price - a.price);
+        return [...filteredTrips].sort((a, b) => b.priceFrom - a.priceFrom);
       case "durationLowToHigh":
         return [...filteredTrips].sort((a, b) => a.days - b.days);
       case "durationHighToLow":

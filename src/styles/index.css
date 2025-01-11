@@ -32,6 +32,7 @@
 .container {
   width: 85vw;
 }
+
 .active-day .wavy-lines {
   position: absolute;
     top:20%;
@@ -40,6 +41,59 @@
     
     z-index: 15;
 }
+
+.page .wave {
+  position: absolute;
+}
+.page .wave:first-of-type {
+  position: absolute;
+    top:150%;
+    transform: translateY(-50%);
+    left: 0;
+    
+    /* z-index: 15; */
+}
+.page .wave:nth-of-type(2) {
+  position: absolute;
+    top:250%;
+    transform: translateY(-50%);
+    right: 0;
+    
+    z-index: 0;
+}
+.about .wavy-lines {
+  position: absolute;
+    top:70%;
+    transform: translateY(-50%);
+    right: 0;
+    
+    z-index: 15;
+}
+.head .wavy-lines{
+  position: absolute;
+}
+.head .wavy-lines:first-of-type {
+  position: absolute;
+  top: 0%;
+
+  left: 0;
+  z-index: 1500;
+}
+.head .wavy-lines:nth-of-type(2) {
+  position: absolute;
+  top: 10%;
+  transform: translateY(-50%);
+  left: 65%;
+  /* z-index: 1500; */
+}
+.head .wavy-lines:nth-of-type(3) {
+  position: absolute;
+  top: 50%;
+  transform: rotateX(90deg);
+  transform: translateY(-50%);
+  right: 0;
+  /* z-index: 1500; */
+}
 .form-contain .wavy-lines:first-child {
   position: absolute;
     top:40%;
@@ -47,6 +101,27 @@
     left: 0;
     
     z-index: 15;
+}
+.about .wavy-lines:first-of-type {
+  position: absolute;
+  top: 150%;
+  transform: translateY(-50%);
+  left: 0;
+  z-index: 1500;
+}
+.about .wavy-lines:nth-of-type(3) {
+  position: absolute;
+  top: 350%;
+  transform: translateY(-50%);
+  left: 0;
+  z-index: 1500;
+}
+.about .wavy-lines:nth-of-type(4) {
+  position: absolute;
+  top: 250%;
+  transform: translateY(-50%);
+  right: 0;
+  z-index: 1500;
 }
 .form-contain .wavy-lines {
   position: absolute;

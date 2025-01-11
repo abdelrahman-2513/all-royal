@@ -1,0 +1,60 @@
+/* PlannerBanner.css */
+
+.planner-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #06284b; /* Navy blue background */
+    padding: 20px;
+    width: 60vw;
+    margin: 10px auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px; /* Rounded corners */
+    color: #fff; /* White text */
+  }
+  .planner-banner .wavy-lines:first-child {
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    left: 0;
+    
+    z-index: 1;
+  }
+  .planner-banner .wavy-lines:last-child {
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    right: 0;
+    
+    z-index: 1;
+  }
+  
+  .planner-content {
+    text-align: center;
+  }
+  
+  .planner-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .planner-button {
+    background-color: #044d88; /* Blue button */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .planner-button:hover {
+    background-color: #145c7c; /* Darker blue on hover */
+  }
+  
+
+  

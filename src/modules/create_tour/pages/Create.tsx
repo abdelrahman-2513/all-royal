@@ -65,12 +65,15 @@ function Create() {
   };
 
   return (
-    <div className="max-w-full min-h-[70vh]">
+    <div className="max-w-full min-h-[70vh] bg-[#dfefff]">
+      <div className="w-[90vw] mx-auto">
+
       {step === 1 && <DestinationStep onSubmit={handleDestinationSubmit} />}
       {step === 2 && (
         <DateStep onSubmit={handleDateSubmit} onBack={handleBack} />
       )}
       {step === 3 && <PersonalInfoStep packageData={packageData} onSubmit={handlePersonalInfoSubmit} />}
+      </div>
     </div>
   );
 }

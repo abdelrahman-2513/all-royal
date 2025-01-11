@@ -103,7 +103,7 @@ export const DestinationStep: React.FC<DestinationStepProps> = ({
             </div>
           ))}
         </div>
-        <div className="flex justify-center mt-6 md:mt-8">
+        <div className="flex justify-center mt-6  md:mt-8">
           <button
             type="submit"
             disabled={selectedDestinations.length === 0}
@@ -111,8 +111,8 @@ export const DestinationStep: React.FC<DestinationStepProps> = ({
               w-full sm:w-auto px-6 py-3 rounded-md text-white font-medium text-sm md:text-base
               ${
                 selectedDestinations.length === 0
-                  ? "bg-blue-300 cursor-not-allowed"
-                  : "bg-blue-900 hover:bg-blue-800 active:bg-blue-950 transition-colors duration-300"
+                  ? "bg-[#044d88] cursor-not-allowed"
+                  : "bg-[#044d88] hover:bg-blue-800 active:bg-blue-950 transition-colors duration-300"
               }
             `}
           >

@@ -2,30 +2,21 @@ import { supabase } from "@/api/supabase";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Typography,
-  Button,
-  Tooltip,
-  Checkbox,
-  Select,
-  Option,
-} from "@material-tailwind/react";
-import { GiSandsOfTime } from "react-icons/gi";
-import { FaEarthAfrica } from "react-icons/fa6";
-import { GrGroup } from "react-icons/gr";
-import { SlCalender } from "react-icons/sl";
+
 import { useAppSelector, useAppDispatch } from "@/hooks/hooks";
 import { setActive } from "@/hooks/redux/homeSlice";
 import { useLanguageAwareNavigate } from "@/i18n";
 import HeaderCard from "@/components/HeaderCard/HeaderCard";
 import PackagesImage from "@/assets/homeImages/packages.jpg";
+import SaudiImage from "@/assets/homeImages/saudi.jpg";
+import DubaiImage from "@/assets/homeImages/dubai.jpg";
+import JordanImage from "@/assets/homeImages/jordan.jpg";
+import EgyptImage from "@/assets/homeImages/egypt.jpg";
+
 import Packages from "@/modules/home/components/Packages";
 import TripsGrid from "@/modules/nile-cruise/components/TripsComponent/TripsComponent";
 import PlannerBanner from "@/modules/nile-cruise/components/PlannerComponent/PlannerComponent";
+import WavyLines from "@/components/WavyComponent/WavyComponent";
 const dummyImageUrl =
   "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80";
 
@@ -44,8 +35,8 @@ const TripFilter = ({ packages }: any) => {
   // const [cityOptions, setCityOptions] = useState<string[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedDaysNights, setSelectedDaysNights] = useState("");
-  // const [selectedCountry, setSelectedCountry] = useState("");
-
+  const [selectedCountry, setSelectedCountry] = useState("");
+  
   const [daysNightsOptions, setDaysNightsOptions] = useState<any[]>([]);
 
   const [isGridView, setIsGridView] = useState(true);
@@ -133,7 +124,7 @@ const TripFilter = ({ packages }: any) => {
         ...prevSelectedCountries,
         destination,
       ]);
-      // setSelectedCountry(destination);
+      setSelectedCountry(destination);
       dispatch(setActive(""));
     }
   }, [destination, useAppSelector]);
@@ -155,7 +146,7 @@ const TripFilter = ({ packages }: any) => {
   const handleDaysNightsChange = (e: any) => {
     setSelectedDaysNights(e);
   };
-
+  console.log({bigPackages})
   const filteredTrips = bigPackages
     .filter((trip) => {
       if (selectedPrice === "low-to-high") return trip.priceFrom >= 0;
@@ -169,7 +160,7 @@ const TripFilter = ({ packages }: any) => {
       return selectedCountries.every((city) =>
         trip.countries && Array.isArray(trip.countries)
           ? trip.countries.some((tripCity: string) =>
-              tripCity.toLowerCase().includes(city.toLowerCase())
+              tripCity.toLowerCase().includes(selectedCountry.toLowerCase())
             )
           : false
       );
@@ -215,10 +206,19 @@ const TripFilter = ({ packages }: any) => {
   // const handleCountryChange = (event: any) => {
   //   setSelectedCountry(event);
   // };
-
+    console.log({selectedCountry})
+    console.log({filteredTrips})
   return (
-    <div className="max-w-full bg-[#dfefff] min-h-[70vh]">
-      <HeaderCard image={PackagesImage} title="Packages" desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam "/>
+    <div className="max-w-full bg-[#dfefff] min-h-[70vh] page">
+       <div className="wave">
+
+<WavyLines lineCount={4} color="#0071cc"/>
+</div>
+<div className="wave">
+
+<WavyLines lineCount={4} color="#0071cc"/>
+</div>
+      <HeaderCard image={selectedCountry === "Saudi Arabia" ? SaudiImage: selectedCountry === "Egypt" ? EgyptImage : selectedCountry === "Jordan" ? JordanImage: selectedCountry === "Dubai" ? DubaiImage : PackagesImage} title={selectedCountry == "" ?"Packages": selectedCountry} desc={selectedCountry == "" ?"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam ":""}/>
       {/* Filter Section */}
       <TripsGrid title={"All Packages"} filteredTrips={filteredTrips} />
       <Packages title={"Relaxation"} items={relaxationArr} />

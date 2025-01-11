@@ -17,12 +17,13 @@ const Packages = ({ items, title,main=false }: any) => {
   },[items])
   const sortItems = (option: string) => {
     switch (option) {
+   
       case "rate":
         return [...items].sort((a, b) => b.rate - a.rate);
       case "priceLowToHigh":
-        return [...items].sort((a, b) => a.price - b.price);
+        return [...items].sort((a, b) => a.priceFrom - b.priceFrom);
       case "priceHighToLow":
-        return [...items].sort((a, b) => b.price - a.price);
+        return [...items].sort((a, b) => b.priceFrom - a.priceFrom);
       case "durationLowToHigh":
         return [...items].sort((a, b) => a.days - b.days);
       case "durationHighToLow":

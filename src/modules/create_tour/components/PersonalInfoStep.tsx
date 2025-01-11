@@ -282,7 +282,7 @@ export const PersonalInfoStep: React.FC<PersonalInfoStepProps> = ({
       {/* Submit Button */}
       <button
         type="submit"
-        className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700"
+        className="w-full bg-[#044d88] text-white py-2 px-4 rounded-md hover:bg-blue-700"
       >
         {t("Submit")}
       </button>

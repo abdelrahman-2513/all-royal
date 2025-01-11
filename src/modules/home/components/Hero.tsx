@@ -93,13 +93,19 @@ import HeroImage1 from "@/assets/homeImages/main-2.jpg";
 import HeroImage2 from "@/assets/homeImages/main-3.jpg";
 import HeroImage3 from "@/assets/homeImages/main-4.jpg";
 import HeroImage4 from "@/assets/homeImages/dubai-main.jpg";
+import WavyLines from "@/components/WavyComponent/WavyComponent";
 
 const Hero = () => {
   const navigate = useLanguageAwareNavigate();
   const { t } = useTranslation();
 
   return (
-    <div className="relative w-full h-[70vh] md:h-[70vh] bg-[#0c2340] overflow-hidden flex items-center justify-center">
+    <div className="relative w-full h-[70vh] md:h-[70vh] bg-[#0c2340] overflow-hidden flex items-center justify-center head">
+
+
+      <WavyLines lineCount={4} color="gray"/>
+      <WavyLines lineCount={3} color="#0071cc" lineSpacing={12}/>
+      <WavyLines lineCount={4} color="#0071cc"/>
       <div className="container w-[90vw] mx-auto">
         <div className=" inset-0 my-auto flex flex-col justify-center justify-content-center  items-start text-white text-left   gap-4 w-[60%] md:gap-8">
           <motion.h1

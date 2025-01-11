@@ -1,35 +1,35 @@
+import HeaderCard from "@/components/HeaderCard/HeaderCard";
+import WavyLines from "@/components/WavyComponent/WavyComponent";
+import Logo from "@/assets/homeImages/terms.jpg";
+
 const TermsAndConditions = () => {
   return (
-    <div className="bg-gray-100 py-12 px-6">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
-          Terms and Conditions
-        </h2>
+    <div className="bg-[#dfefff] w-full  about">
+    <HeaderCard title={"Terms and Conditions"} desc={""} image={Logo} />
+    <WavyLines color="#0071cc" lineCount={4}/>
+    <WavyLines color="#0071cc" lineCount={4} />
+    <WavyLines color="#0071cc" lineCount={4} />
+    <WavyLines color="#0071cc" lineCount={4} />
+    <div className="w-[70vw] mx-auto py-5 ">
+      
+      <p className="my-4">Hello! We're delighted to help you book your dream tour with All Royal Travel. Let us know your preferences, and we’ll handle the rest.
+      </p>
 
         <section className="mb-8">
-          <h3 className="text-2xl font-semibold text-gray-800 mb-4">
-            Book Your Dream Tour with Ease
+          <h3 className="text-2xl font-semibold text-[#0071cc] mb-4">
+          Personalized Itinerary for You
+
           </h3>
           <p className="text-gray-700">
-            Hello! We're delighted to help you book your dream tour with All
-            Royal Travel. Let us know your preferences, and we’ll handle the
-            rest.
+          Once you reach out, one of our friendly representatives will contact you. Together, we’ll create a custom itinerary tailored to your interests. Once you’re satisfied, your journey is confirmed!
+
           </p>
         </section>
 
-        <section className="mb-8">
-          <h3 className="text-2xl font-semibold text-gray-800 mb-4">
-            Personalized Itinerary for You
-          </h3>
-          <p className="text-gray-700">
-            Once you reach out, one of our friendly representatives will contact
-            you. Together, we’ll create a custom itinerary tailored to your
-            interests. Once you’re satisfied, your journey is confirmed!
-          </p>
-        </section>
+        
 
         <section className="mb-8">
-          <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+          <h3 className="text-2xl font-semibold text-[#0071cc] mb-4">
             Booking Policy
           </h3>
           <p className="text-gray-700">
@@ -41,7 +41,7 @@ const TermsAndConditions = () => {
         </section>
 
         <section className="mb-8">
-          <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+          <h3 className="text-2xl font-semibold text-[#0071cc] mb-4">
             Credit Card Payments
           </h3>
           <p className="text-gray-700">
@@ -52,7 +52,7 @@ const TermsAndConditions = () => {
         </section>
 
         <section className="mb-8">
-          <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+          <h3 className="text-2xl font-semibold text-[#0071cc] mb-4">
             Fair Cancellation Fees (Excluding Peak Periods)
           </h3>
           <ul className="text-gray-700 list-disc pl-6 space-y-2">
@@ -84,7 +84,7 @@ const TermsAndConditions = () => {
         </section>
 
         <section className="mb-8">
-          <h3 className="text-2xl font-semibold text-gray-800 mb-4">Refunds</h3>
+          <h3 className="text-2xl font-semibold text-[#0071cc] mb-4">Refunds</h3>
           <p className="text-gray-700">
             Refunds will be processed using the original payment method. No
             refunds are provided for no-shows. A 5% bank fee applies to all
@@ -93,7 +93,7 @@ const TermsAndConditions = () => {
         </section>
 
         <section className="mb-8">
-          <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+          <h3 className="text-2xl font-semibold text-[#0071cc] mb-4">
             Force Majeure
           </h3>
           <p className="text-gray-700">
@@ -107,7 +107,7 @@ const TermsAndConditions = () => {
         </section>
 
         <section className="mb-8">
-          <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+          <h3 className="text-2xl font-semibold text-[#0071cc] mb-4">
             Accommodation
           </h3>
           <p className="text-gray-700">
@@ -117,7 +117,7 @@ const TermsAndConditions = () => {
         </section>
 
         <section className="mb-8">
-          <h3 className="text-2xl font-semibold text-gray-800 mb-4">Flights</h3>
+          <h3 className="text-2xl font-semibold text-[#0071cc] mb-4">Flights</h3>
           <ul className="text-gray-700 list-disc pl-6 space-y-2">
             <li>
               <strong>Domestic Flights:</strong> Prices quoted are averages, and
@@ -131,7 +131,7 @@ const TermsAndConditions = () => {
         </section>
 
         <section className="mb-8">
-          <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+          <h3 className="text-2xl font-semibold text-[#0071cc] mb-4">
             Black Friday Offers
           </h3>
           <p className="text-gray-700">
@@ -142,7 +142,7 @@ const TermsAndConditions = () => {
         </section>
 
         <section className="mb-8">
-          <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+          <h3 className="text-2xl font-semibold text-[#0071cc] mb-4">
             Responsibility
           </h3>
           <p className="text-gray-700">
@@ -154,7 +154,7 @@ const TermsAndConditions = () => {
         </section>
 
         <section className="mb-8">
-          <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+          <h3 className="text-2xl font-semibold text-[#0071cc] mb-4">
             Special Requests Policy
           </h3>
           <p className="text-gray-700">
@@ -165,13 +165,13 @@ const TermsAndConditions = () => {
         </section>
 
         <section className="mb-8">
-          <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+          <h3 className="text-2xl font-semibold text-[#0071cc] mb-4">
             Children Policy (Children Sharing Parents’ Room)
           </h3>
 
           {/* Policy 1 */}
           <div className="mb-4">
-            <h4 className="text-xl font-semibold text-gray-800">
+            <h4 className="text-xl font-semibold text-[#0071cc]">
               Policy 1 (for packages, Nile cruises, and hotels):
             </h4>
             <ul className="text-gray-700 list-disc pl-6 space-y-2">
@@ -193,7 +193,7 @@ const TermsAndConditions = () => {
 
           {/* Policy 2 */}
           <div>
-            <h4 className="text-xl font-semibold text-gray-800">
+            <h4 className="text-xl font-semibold text-[#0071cc]">
               Policy 2 (for sightseeing tours & shore excursions):
             </h4>
             <ul className="text-gray-700 list-disc pl-6 space-y-2">
@@ -212,7 +212,7 @@ const TermsAndConditions = () => {
         </section>
 
         <section className="mb-8">
-          <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+          <h3 className="text-2xl font-semibold text-[#0071cc] mb-4">
             Terms of Photo Use
           </h3>
           <p className="text-gray-700">
@@ -222,7 +222,7 @@ const TermsAndConditions = () => {
         </section>
 
         <section className="mb-8">
-          <h3 className="text-2xl font-semibold text-gray-800 mb-4">Tipping</h3>
+          <h3 className="text-2xl font-semibold text-[#0071cc] mb-4">Tipping</h3>
           <p className="text-gray-700">
             Tipping is appreciated for excellent service but is not mandatory.
             Your generosity will be valued by our staff.
@@ -230,7 +230,7 @@ const TermsAndConditions = () => {
         </section>
 
         <section className="mb-8">
-          <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+          <h3 className="text-2xl font-semibold text-[#0071cc] mb-4">
             Complaints
           </h3>
           <p className="text-gray-700">
@@ -242,7 +242,7 @@ const TermsAndConditions = () => {
         </section>
 
         <section className="mb-8">
-          <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+          <h3 className="text-2xl font-semibold text-[#0071cc] mb-4">
             General Terms of Use
           </h3>
           <ul className="text-gray-700 list-disc pl-6 space-y-2">
