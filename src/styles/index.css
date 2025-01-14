@@ -221,3 +221,12 @@ body {
   border-radius: 16px !important;
   /* font-family: "Noto Sans", sans-serif; */
 }
+
+@media screen and (max-width: 768px){
+  h1{
+    font-size: 20px !important;
+  }
+  .header h1{
+    font-size: 26px !important;
+  }
+}

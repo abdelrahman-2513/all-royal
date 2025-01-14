@@ -9,7 +9,7 @@ import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import Logo from "@/assets/homeImages/Logooo.png";
-import { Popper } from "@mui/material";
+import { IconButton, Popper } from "@mui/material";
 import { supabase } from "@/api/supabase";
 import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import { setPackage } from "@/hooks/redux/packageSlice";
@@ -17,6 +17,8 @@ import { setNileCruise } from "@/hooks/redux/cruiseSlice";
 import { setActive } from "@/hooks/redux/homeSlice";
 import { useLanguageAwareNavigate, useLanguageSwitch } from "@/i18n";
 import { useTranslation } from "react-i18next";
+import { MenuIcon } from "lucide-react";
+import Drawer from "@mui/material/Drawer";
 
 interface SubLinkItem {
   name: string;
@@ -54,6 +56,7 @@ function Header() {
   const fetched = useRef(false);
   const parentRef = useRef<HTMLDivElement>(null);
   const [showMobileDropdown, setShowMobileDropdown] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   // const mobileDropdownRef = useRef<HTMLDivElement>(null);
 
   const checkSession = async () => {
@@ -88,6 +91,9 @@ function Header() {
     checkSession();
   }, [currentLang]);
 
+  const toggleMobileDrawer = () => {
+    setMobileOpen(!mobileOpen);
+  };
   const handleClick = (item: any) => {
     navigate(item.path);
   };
@@ -154,17 +160,42 @@ function Header() {
     setNestedOpen({});
   };
   const handleNavigation = (link: string) => {
+    setActiveLink((prev)=> prev === link ? "" : link);
     console.log(link);
-    if(link === "Nile Cruises") navigate(`/nile-cruises`);
-    if(link === "All Packages") navigate(`/packages`);
-    if (link === "Create Your Tour") navigate(`/create`); 
-    if (link === "About All Royal Travel" ) navigate(`/about`); 
-    if (link === "Privacy Policy") navigate(`/privacy-policy`); 
-    if(link === "Our Partners") navigate(`/our-partners`);
-    if( link === "Become Our Partner" ) navigate(`/become-our-partner`);
-    if (link === "Global Code of Ethics for Tourism") navigate(`/global-code-of-ethics`); 
-    if (link === "Terms and Conditions") navigate(`/terms-and-conditions`); 
-    // else navigate(`/about`); 
+    if(["Egypt","Saudi Arabia","Dubai","Jordan"].includes(link)) 
+      {
+        filterByPlace(link)
+        setMobileOpen(false);
+      }
+    if(link === "Nile Cruises") 
+      {navigate(`/nile-cruises`); setMobileOpen(false);
+      }
+    if(link === "All Packages")
+       {navigate(`/packages`); setMobileOpen(false);
+       }
+    if (link === "Create Your Tour") 
+      {navigate(`/create`);  setMobileOpen(false);
+      }
+    if (link === "About All Royal Travel" )
+       {navigate(`/about`);  setMobileOpen(false);
+       }
+    if (link === "Privacy Policy") 
+      {navigate(`/privacy-policy`);  setMobileOpen(false);
+      }
+    if(link === "Our Partners") 
+      {navigate(`/our-partners`); setMobileOpen(false);
+      }
+    if( link === "Become Our Partner" ) 
+      {navigate(`/become-our-partner`); setMobileOpen(false);
+      }
+    if (link === "Global Code of Ethics for Tourism") 
+      {navigate(`/global-code-of-ethics`);  setMobileOpen(false);
+      }
+    if (link === "Terms and Conditions") 
+      {navigate(`/terms-and-conditions`);  setMobileOpen(false);
+      }
+    
+    
   }
   const handleNestedClick = (index: number) => {
     setNestedOpen((prev) => ({ ...prev, [index]: !prev[index] }));
@@ -241,7 +272,7 @@ function Header() {
         height: "90px",
       }}
     >
-      <div className="conatiner w-[90vw] mx-auto">
+      <div className="conatiner w-[90vw]  mx-auto">
         <Toolbar
           sx={{
             display: "flex",
@@ -252,6 +283,16 @@ function Header() {
             height: "100%",
           }}
         >
+          <IconButton
+          edge="start"
+    
+          aria-label="menu"
+          
+          sx={{ display: { xs: "block", md: "none" } ,color:"white"}}
+          onClick={toggleMobileDrawer}
+        >
+          <MenuIcon />
+        </IconButton>
           {/* Logo Container */}
           <div>
             <img
@@ -263,13 +304,13 @@ function Header() {
           </div>
 
           {/* Links Container */}
-          <div style={{ display: "flex", gap: "15px" }}>
+          <div className="hidden md:flex gap-4">
             {Object.keys(links).map((link) => (
               <Button
                 key={link}
                 color="inherit"
                 sx={{ fontSize: "0.875rem" }}
-                className={`${activeLink === link ? "bg[gray]" : "bg[#0c2340]"}`}
+                className={`${activeLink === link ? "bg[#0c2340]-700" : "bg[#0c2340]"}`}
                 onMouseOver={(e) =>
                   activeLink === link
                     ? handleCloseDialog()
@@ -282,7 +323,7 @@ function Header() {
                   ) : null
                 }
               >
-                {link}
+                {t(link)}
               </Button>
             ))}
           </div>
@@ -291,10 +332,10 @@ function Header() {
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
             <Button
               variant="contained"
-              sx={{ backgroundColor: "#044d88", fontSize: "0.875rem" }}
+              sx={{ display:{ xs: "none", md: "block" },backgroundColor: "#044d88", fontSize: "0.875rem" }}
               onClick={() => navigate("/create")}
             >
-              Book With Us
+              {t("Book With Us")}
             </Button>
             <select
               value={currentLang}
@@ -337,7 +378,7 @@ function Header() {
                 onClick={() => ["Egypt","Saudi Arabia","Dubai","Jordan"].includes(item.title) ?filterByPlace(item.title):handleNestedClick(index)}
                 
               >
-                <ListItemText primary={item.title}  onClick={()=> item.subLinks.length == 0 && handleNavigation(item.title)}/>
+                <ListItemText primary={t(item.title)}  onClick={()=> item.subLinks.length == 0 && handleNavigation(item.title)}/>
                 {item.subLinks.length > 0 ? (
                   nestedOpen[index] ? (
                     <ExpandLess />
@@ -358,7 +399,7 @@ function Header() {
                         window.location.reload();
                       }}
                     >
-                      <ListItemText primary={subItem.name} />
+                      <ListItemText primary={t(subItem.name)} />
                     </ListItem>
                   ))}
                 </List>
@@ -367,6 +408,41 @@ function Header() {
           ))}
         </List>
       </Popper>
+      <Drawer anchor="left" open={mobileOpen} onClose={toggleMobileDrawer}>
+  <List sx={{ width: 250, backgroundColor: "#0c2340", height: "100%", color: "white" }} className="flex flex-col justify-content-center">
+    {Object.keys(links).map((link, index) => (
+      <React.Fragment key={index}>
+        <ListItem component={"button"} onClick={() => handleNavigation(link)}>
+          <ListItemText primary={t(link)} />
+          {links[link].length > 0 ? activeLink === link ? <ExpandLess /> : <ExpandMore /> : null}
+        </ListItem>
+        {links[link].length > 0 && (
+          <Collapse in={activeLink === link} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              {links[link].map((subLink, subIndex) => (
+                <ListItem
+                  component={"button"}
+                  key={subIndex}
+                  sx={{ pl: 4 }}
+                  onClick={() => handleNavigation(subLink.title)}
+                >
+                  <ListItemText primary={t(subLink.title)} />
+                </ListItem>
+              ))}
+            </List>
+          </Collapse>
+        )}
+      </React.Fragment>
+    ))}
+    <Button
+      variant="contained"
+      sx={{ backgroundColor: "#007bff", width: "80%", margin: "20px auto" }}
+      onClick={() => navigate("/create")}
+    >
+      {t("Book With Us")}
+    </Button>
+  </List>
+</Drawer>
     </AppBar>
   );
 }

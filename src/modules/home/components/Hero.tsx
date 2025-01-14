@@ -100,14 +100,14 @@ const Hero = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="relative w-full h-[70vh] md:h-[70vh] bg-[#0c2340] overflow-hidden flex items-center justify-center head">
+    <div className="relative w-full h-[50vh] md:h-[70vh] bg-[#0c2340] overflow-hidden flex items-center justify-center head">
 
 
-      <WavyLines lineCount={4} color="gray"/>
-      <WavyLines lineCount={3} color="#0071cc" lineSpacing={12}/>
-      <WavyLines lineCount={4} color="#0071cc"/>
+      <WavyLines lineCount={4} color="gray" isMopileHidden={true}/>
+      <WavyLines lineCount={3} color="#0071cc" lineSpacing={12} isMopileHidden={true}/>
+      <WavyLines lineCount={4} color="#0071cc" />
       <div className="container w-[90vw] mx-auto">
-        <div className=" inset-0 my-auto flex flex-col justify-center justify-content-center  items-start text-white text-left   gap-4 w-[60%] md:gap-8">
+        <div className=" inset-0 my-auto flex flex-col header justify-center justify-content-center  items-start text-white text-left  sm:w-[80%] gap-4 w-[60%] md:gap-8">
           <motion.h1
             initial={{ opacity: 0, x: -200 }}
             animate={{ opacity: 1, x: 0 }}
@@ -184,7 +184,7 @@ const Hero = () => {
         </div>
 
         {/* Images Section */}
-        <div className="absolute top-5 right-[270px] flex-col justify-content-center align-end gap-5 p-4">
+        <div className="absolute hidden md:block  top-5 right-[270px] flex-col justify-content-center align-end gap-5 p-4">
           <img
             src={HeroImage4}
             alt="Hero 4"
@@ -196,7 +196,7 @@ const Hero = () => {
             className="w-56 h-35 object-contain rounded-lg"
           />
         </div>
-        <div className="absolute bottom-[-50px] right-[-20px] flex-col  gap-5 p-4">
+        <div className="absolute hidden md:block  bottom-[-50px] right-[-20px] flex-col  gap-5 p-4">
           <img
             src={HeroImage2}
             alt="Hero 2"

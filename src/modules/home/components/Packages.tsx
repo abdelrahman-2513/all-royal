@@ -58,12 +58,12 @@ const Packages = ({ items, title,main=false }: any) => {
         >
           {t(title)}
         </motion.h1>
-        <div className="flex gap-2">
+        <div className="flex gap-2 sm:gap-1 sm:text-[0.875rem] content-center">
 
         <select
           value={sortOption}
           onChange={(e) => handleSort(e.target.value)}
-          className="border  rounded-md p-2 bg-transparent border-[#044d88] text-[#044d88]"
+          className="border sm:text-[0.875rem] sm:p-[0.5rem] sm:h-[fit-content] rounded-md p-2 bg-transparent border-[#044d88] text-[#044d88]"
           >
           <option value="rate">Sort by Rate</option>
           <option value="priceLowToHigh">Price: Low to High</option>

@@ -7,6 +7,7 @@ interface WavyLinesProps {
   strokeWidth?: number;
   lineSpacing?: number;
   lineCount?: number;
+  isMopileHidden?: boolean
 }
 
 const WavyLines: React.FC<WavyLinesProps> = ({
@@ -16,6 +17,7 @@ const WavyLines: React.FC<WavyLinesProps> = ({
   strokeWidth = 2,
   lineSpacing = 12,
   lineCount = 3,
+  isMopileHidden = false
 }) => {
   const lines = Array.from({ length: lineCount }, (_, index) => {
     const y = lineSpacing * (index + 1);
@@ -31,7 +33,7 @@ const WavyLines: React.FC<WavyLinesProps> = ({
       fill="none"
       stroke={color}
       strokeWidth={strokeWidth}
-      className="wavy-lines"
+      className={`wavy-lines ${isMopileHidden ? "hidden" : "block"}`}
     >
       {lines.map((d, index) => (
         <path key={index} d={d} />

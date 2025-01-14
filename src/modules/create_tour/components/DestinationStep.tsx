@@ -70,7 +70,7 @@ export const DestinationStep: React.FC<DestinationStepProps> = ({
         {t("Choose Your Destination")}?
       </h2>
       <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
           {DESTINATIONS.map((destination) => (
             <div
               key={destination.id}

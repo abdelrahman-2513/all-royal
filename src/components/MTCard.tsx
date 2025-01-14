@@ -7,164 +7,121 @@ import {
   Button,
   Tooltip,
 } from "@material-tailwind/react";
-// import { useNavigate } from "react-router-dom";
 import { GiSandsOfTime } from "react-icons/gi";
-import { FaEarthAfrica } from "react-icons/fa6";
+import { FaEarthAfrica, FaSun } from "react-icons/fa6";
 import { GrGroup } from "react-icons/gr";
 import { SlCalender } from "react-icons/sl";
+import { FaMoon, FaStar } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { useLanguageAwareNavigate } from "@/i18n";
+import { MoonIcon, SunDim } from "lucide-react";
 
 export function CardDefault({ p }: any) {
   const { t } = useTranslation();
-
-  const dummyImageUrl: string =
-    "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80";
   const navigate = useLanguageAwareNavigate();
-  // console.log(p.NileCruisesName);
+
+  const dummyImageUrl =
+    "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80";
+
+    console.log(p);
   return (
-    <Card
-      className="w-full flex flex-col border-[1px] border-[#0071cc] justify-between shadow-lg object-cover md:h-[490px]"
-      placeholder={undefined}
-      onPointerEnterCapture={undefined}
-      onPointerLeaveCapture={undefined}
-    >
-      <CardHeader
-        floated={false}
-        color="blue-gray"
-        placeholder={undefined}
-        onPointerEnterCapture={undefined}
-        onPointerLeaveCapture={undefined}
-      >
+    <Card className="w-full flex flex-col w-[260px] border border-[#0071cc] rounded-xl shadow-lg h-[450px] justify-between"  placeholder={undefined}
+    onPointerEnterCapture={undefined}
+    onPointerLeaveCapture={undefined}>
+      <CardHeader floated={false} className="pb-2 shadow-none flex flex-col gap-2" placeholder={undefined}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}>
+          <Typography variant="h6" className="text-md font-semibold text-[#0c2340] h-[20px] text-wrap overflow-hidden"  placeholder={undefined}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}>
+            {p.package_name || p.NileCruisesName || "MS Chateau Lafayette Nile Cruise"}
+          </Typography>
+        <div className="flex justify-between items-center" >
+        <Typography variant="small" color="gray"  placeholder={undefined}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}>
+          {t("Starting")} ${p.priceFrom || "10"} USD
+        </Typography>
+        <div className="flex items-center text-yellow-500">
+            <FaStar />
+            <Typography className="ml-1 text-sm font-medium"  placeholder={undefined}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}>
+              {p.rating || "5.0"} 
+            </Typography>
+          </div>
+        </div>
         <img
           src={p.images && p.images.length > 0 ? p.images[0] : dummyImageUrl}
-          alt="ui/ux review check"
-          className="object-cover w-full h-[170px] aspect-ratio"
+          alt={p.package_name || "Cruise Image"}
+          className="w-full h-[170px] object-cover rounded-md"
         />
-        <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
       </CardHeader>
-      <CardBody
-        placeholder={undefined}
-        onPointerEnterCapture={undefined}
-        onPointerLeaveCapture={undefined}
-        className="flex flex-col justify-between"
-      >
-        <div className="mb-3 flex items-center justify-between">
-          <Typography
-            variant="h5"
-            color="blue-gray"
-            className="font-medium"
-            placeholder={undefined}
-            onPointerEnterCapture={undefined}
-            onPointerLeaveCapture={undefined}
-            title={p.package_name || p.NileCruisesName}
-          >
-            {/* Wooden House, Florida */}
-            {p.package_name || p.NileCruisesName || ""}
-          </Typography>
-          <Typography
-            color="blue-gray"
-            className="flex items-center gap-1.5 font-normal"
-            placeholder={undefined}
-            onPointerEnterCapture={undefined}
-            onPointerLeaveCapture={undefined}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="-mt-0.5 h-5 w-5 text-yellow-700"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                clipRule="evenodd"
-              />
-            </svg>
-            5.0
-          </Typography>
-        </div>
-        <Typography
-          color="gray"
-          placeholder={undefined}
+
+      <CardBody className="p-4 flex flex-col gap-3"  placeholder={undefined}
           onPointerEnterCapture={undefined}
-          onPointerLeaveCapture={undefined}
-        >
-          {p.NileCruisesName
-            ? p.days +
-              ` ${t("Days")} / ` +
-              p.nights +
-              ` ${t("Nights")} ${t("OR")} ` +
-              p.days2 +
-              ` ${t("Days")} / ` +
-              p.nights2 +
-              ` ${t("Nights")}`
-            : p.days + ` ${t("Days")} / ` + p.nights + ` ${t("Nights")}`}
-        </Typography>
-        <div className="group mt-8 inline-flex flex-wrap items-center gap-3">
-          <Tooltip
-            content={
-              p.NileCruisesName
-                ? p.days +
-                  ` ${t("Days")} / ` +
-                  p.nights +
-                  ` ${t("Nights")} ${t("OR")} ` +
-                  p.days2 +
-                  ` ${t("Days")} / ` +
-                  p.nights2 +
-                  ` ${t("Nights")}`
-                : p.days + ` ${t("Days")} / ` + p.nights + ` ${t("Nights")}`
-            }
-          >
-            <span className="cursor-pointer rounded-full border border-[#003755] bg-gray-900/5 p-3 text-xl text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
-              {/* ⌛ */}
-              <GiSandsOfTime />
+          onPointerLeaveCapture={undefined}>
+        
+
+        <div className="grid grid-cols-2 gap-2 text-sm text-gray-700">
+          <div className="flex items-center gap-2 text-[12px]">
+            <FaEarthAfrica className="text-[14px]" /> 
+            <span className="h-[20px] text-wrap overflow-hidden w-[80%]">
+
+            {p.countries?.length || 1} {t("Country")}
             </span>
-          </Tooltip>
-          <Tooltip
-            content={
-              p.countries && p.cities
-                ? p.countries.length +
-                  " Country " +
-                  p.cities.length +
-                  ` ${t("Cities")}`
-                : "1" + " Country " + p.cities.length + ` ${t("Cities")}`
-            }
-          >
-            <span className="cursor-pointer rounded-full border border-[#003755] bg-gray-900/5 p-3 text-xl text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
-              {/* 🌍 */}
-              <FaEarthAfrica />
+          </div>
+          <div className="flex items-center gap-2 text-[12px]">
+            <GrGroup className="text-[14px]"/> 
+            <span className="h-[20px] text-wrap overflow-hidden w-[80%]">
+
+            {p.cities?.length || 3} {t("Cities")}
             </span>
-          </Tooltip>
-          <Tooltip content={p.tour_type || p.tourType}>
-            <span className="cursor-pointer rounded-full border border-[#003755] bg-gray-900/5 p-3 text-xl text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
-              {/* 👥 */}
-              <GrGroup />
+          </div>
+          <div className="flex items-center gap-2 text-[12px]">
+            <FaSun className="text-[14px]"/> 
+            <span className="h-[20px] text-wrap overflow-hidden w-[80%]">
+
+            {p.days || 4} {t("Days")}
             </span>
-          </Tooltip>
-          <Tooltip
-            content={p.availability !== "" ? p.availability : t("Everyday")}
-          >
-            <span className="cursor-pointer rounded-full border border-[#003755] bg-gray-900/5 p-3 text-xl text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
-              {/* 📅 */}
-              <SlCalender />
+          </div>
+          <div className="flex items-center gap-2 text-[12px]">
+            <FaMoon className="text-[14px]" /> 
+            <span className="h-[20px] text-wrap overflow-hidden w-[80%]">
+
+            {p.days-1 || 4} {t("Nights")}
             </span>
-          </Tooltip>
+          </div>
+          <div className="flex items-center  text-[12px] gap-2">
+          <GrGroup className="text-[14px]"/> 
+          <span className="h-[20px] text-wrap overflow-hidden w-[80%]">
+
+          {p.tour_type?.includes("(")?p.tour_type?.split("(")[0]: p.tour_type ||"Adventure"}
+          </span>
+          </div>
+          <div className="flex items-center gap-2 text-[12px]">
+            <SlCalender className="text-[14px]"/> <span className="h-[20px] text-wrap overflow-hidden w-[80%]">{p.availability || t("Every Thu & Mon")}</span>
+          </div>
+          
+
         </div>
+
+        {/* <Typography variant="small" color="gray"  placeholder={undefined}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}>
+          <GrGroup /> {p.tour_type ||""}
+        </Typography> */}
       </CardBody>
-      <CardFooter
-        className="pt-3"
-        placeholder={undefined}
-        onPointerEnterCapture={undefined}
-        onPointerLeaveCapture={undefined}
-      >
+
+      <CardFooter className="pt-0 pb-4 px-4"  placeholder={undefined}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}>
         <Button
-          className="bg-[#003755] hover:bg-black/80 text-white"
-          size="lg"
-          fullWidth={true}
+          fullWidth
           placeholder={undefined}
           onPointerEnterCapture={undefined}
           onPointerLeaveCapture={undefined}
+          className="bg-white border border-[#0071cc] text-[#0071cc] hover:text-white hover:bg-[#0071cc]"
           onClick={() => {
             if (p.package_name) {
               navigate(`/packages/${p.id}`);
@@ -173,7 +130,7 @@ export function CardDefault({ p }: any) {
             }
           }}
         >
-          {t("View")}
+          {t("Know More")}
         </Button>
       </CardFooter>
     </Card>

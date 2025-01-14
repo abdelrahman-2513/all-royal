@@ -28,12 +28,12 @@ const PopularDestinations = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ type: "spring", stiffness: 100 }}
-        className="text-2xl my-5 p-0  font-bold text-[#044d88]"
+        className="text-2xl my-5 p-0  font-bold text-[#044d88] "
       >
         {t("Most Popular Destination")}
       </motion.h1>
       <div className="container w-[90vw] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 w-[100%] mx-auto rounded-t-lg overflow-hidden">
+        <div className="grid grid-cols-2 sm:gap-2 md:grid-cols-4 w-[100%] mx-auto rounded-t-lg overflow-hidden">
           {destinations.map((destination, index) => (
             <motion.div
               key={index}
@@ -50,7 +50,7 @@ const PopularDestinations = () => {
               <img
                 src={destination.image}
                 alt={destination.name}
-                className="w-full h-[300px] object-cover"
+                className="w-full h-[300px] sm:rounded-t-lg sm:h-[200px] object-cover"
               />
               <div className="text-center py-3 text-[#0c2340] font-bold">
                 {destination.name}

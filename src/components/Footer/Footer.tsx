@@ -19,7 +19,7 @@ const Footer = () => {
           </p>
         </div>
         <hr className="border-t border-gray-300 mb-6 w-[90vw] mx-auto " />
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 w-[90vw] mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 w-[90vw] mx-auto">
           {/* All Royal Egypt */}
           <div>
             <h3 className="text-lg font-semibold mb-2">{t("All Royal Egypt")}</h3>

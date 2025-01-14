@@ -17,7 +17,7 @@ export function CarouselSize({ items }: { items: any[] }) {
         }}
         className="w-full flex flex-col items-center rounded-xl"
       >
-        <CarouselContent className="w-[90vw] max-w-full bg-[transparent] md:gap-4">
+        <CarouselContent className="w-[90vw] max-w-full flex flex-row gap-6 bg-[transparent] ">
           {items.length ? (
             items.map((p: any, index: number) => (
               <CarouselItem key={index} className="">
@@ -32,7 +32,7 @@ export function CarouselSize({ items }: { items: any[] }) {
                   }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  className="flex"
+                  className="flex w-[260px]"
                 >
                   <CardDefault p={p} />
                 </motion.div>
