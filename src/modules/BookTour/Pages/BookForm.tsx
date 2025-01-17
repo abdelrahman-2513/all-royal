@@ -55,7 +55,7 @@ const BookForm = ({pack,Children,plans,lowerPrices}:any) => {
       )}
       <div className="mt-6">
         
-        <div className="flex md:flex-row flex-col justify-between items-center mt-4 gap-4">
+        <div className="flex md:flex-row flex-row justify-between items-center mt-4 gap-4">
           <div className="text-center mt-2">
             <div className="text-3xl text-gray-700 mb-2">⌛</div>
             {pack && pack.days && (
@@ -64,13 +64,14 @@ const BookForm = ({pack,Children,plans,lowerPrices}:any) => {
                   ` ${t("Days")} / ` +
                   pack.nights +
                   ` ${t("Nights")}`}
-                <br />
+                {pack.days2 && <><br />
                 {t("OR")}
+                </>}
                 <br />
-                {pack.days2 +
+                {pack.days2 && (<>{pack.days2 +
                   ` ${t("Days")} / ` +
                   pack.nights2 +
-                  ` ${t("Nights")}`}
+                  ` ${t("Nights")}`}</>)}
               </p>
             )}
           </div>

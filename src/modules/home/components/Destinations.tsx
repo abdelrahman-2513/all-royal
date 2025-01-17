@@ -4,10 +4,20 @@ import EgyptImage from "@/assets/homeImages/egypt.jpg";
 import JordanImage from "@/assets/homeImages/jordan.jpg";
 import SaudiArabiaImage from "@/assets/homeImages/saudi.jpg";
 import DubaiImage from "@/assets/homeImages/dubai.jpg";
+import { useAppDispatch } from "@/hooks/hooks";
+import { setActive } from "@/hooks/redux/homeSlice";
+import { useLanguageAwareNavigate } from "@/i18n";
 
 const PopularDestinations = () => {
   const { t } = useTranslation();
+const dispatch = useAppDispatch();
+const navigate = useLanguageAwareNavigate();
 
+const filterByPlace = (place: string) => {
+  // console.log(place);
+  dispatch(setActive(place));
+  navigate("/packages");
+};
   const destinations = [
     { name: t("Egypt"), image: EgyptImage },
     { name: t("Jordan"), image: JordanImage },
@@ -45,7 +55,8 @@ const PopularDestinations = () => {
                 damping: 25,
                 duration: 0.8,
               }}
-              className="relative  overflow-hidden "
+              className="relative  overflow-hidden cursor-pointer"
+              onClick={() => filterByPlace(destination.name)}
             >
               <img
                 src={destination.image}

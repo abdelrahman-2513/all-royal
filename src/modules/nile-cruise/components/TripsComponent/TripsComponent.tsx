@@ -71,10 +71,16 @@ const TripsGrid = ({title, filteredTrips }:any) => {
       viewport={{ once: true }}
       transition={{ type: "spring", stiffness: 100 }} className="flex justify-between items-center mb-4">
         <motion.h1
-          initial={{ opacity: 0, x: 0 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ type: "spring", stiffness: 100 }}
+         initial={{ opacity: 0, y: 50, scale: 0.9 }}   // Start slightly lower and smaller
+         whileInView={{ opacity: 1, y: 0, scale: 1 }}  // Fade in, slide up, and scale up
+         transition={{
+           duration: 1,        // Smooth and slow transition
+           ease: "easeOut",    // Ease-out for a natural finish
+           delay: 0.2,         // Delay for a more impactful appearance
+           type: "spring",     // Spring effect for bounce
+           stiffness: 80       // Controls the bounce effect
+         }}
+         viewport={{ once: true }}
           className="text-2xl font-bold text-[#0071cc]"
         >
           {t(title)}
@@ -100,8 +106,8 @@ const TripsGrid = ({title, filteredTrips }:any) => {
           "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 cursor-pointer"
         }
       >
-        {sortedItems.slice(0, visibleCount).map((trip:any) => (
-         <CardDefault p={trip} />
+        {sortedItems.slice(0, visibleCount).map((trip:any,index) => (
+         <CardDefault p={trip} index={index}  />
         ))}
       </motion.div>
 

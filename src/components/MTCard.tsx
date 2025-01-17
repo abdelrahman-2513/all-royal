@@ -7,16 +7,14 @@ import {
   Button,
   Tooltip,
 } from "@material-tailwind/react";
-import { GiSandsOfTime } from "react-icons/gi";
 import { FaEarthAfrica, FaSun } from "react-icons/fa6";
 import { GrGroup } from "react-icons/gr";
 import { SlCalender } from "react-icons/sl";
 import { FaMoon, FaStar } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { useLanguageAwareNavigate } from "@/i18n";
-import { MoonIcon, SunDim } from "lucide-react";
-
-export function CardDefault({ p }: any) {
+import {motion} from "framer-motion";
+export function CardDefault({ p ,index}: any) {
   const { t } = useTranslation();
   const navigate = useLanguageAwareNavigate();
 
@@ -25,6 +23,18 @@ export function CardDefault({ p }: any) {
 
     console.log(p);
   return (
+    <motion.div
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 25,
+                    duration: 0.8,
+                  }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}>
+
     <Card className="w-full flex flex-col w-[260px] border border-[#0071cc] rounded-xl shadow-lg h-[450px] justify-between"  placeholder={undefined}
     onPointerEnterCapture={undefined}
     onPointerLeaveCapture={undefined}>
@@ -134,5 +144,7 @@ export function CardDefault({ p }: any) {
         </Button>
       </CardFooter>
     </Card>
+    </motion.div>
+
   );
 }

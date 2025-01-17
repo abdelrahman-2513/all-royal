@@ -27,7 +27,7 @@ const PriceAccommodation = ({ plans, hotels }: any) => {
       <p className="my-4">{t("Please inquire for pricing over Christmas, New Year's, and Easter holidays.")}</p>
 
       {plans && plans.length > 0 ? (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="grid grid-cols-2 md:grid-cols-2 gap-6">
       {plans.map((plan: any, index: number) => {
         const planHotels = getHotelsForPlan(plan.id);
 

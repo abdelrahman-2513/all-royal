@@ -50,10 +50,16 @@ const Packages = ({ items, title,main=false }: any) => {
     >
       <div className="flex justify-between items-center ">
         <motion.h1
-          initial={{ opacity: 0, x: 0 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 50, scale: 0.9 }}   // Start slightly lower and smaller
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}  // Fade in, slide up, and scale up
+          transition={{
+            duration: 1,        // Smooth and slow transition
+            ease: "easeOut",    // Ease-out for a natural finish
+            delay: 0.2,         // Delay for a more impactful appearance
+            type: "spring",     // Spring effect for bounce
+            stiffness: 80       // Controls the bounce effect
+          }}
           viewport={{ once: true }}
-          transition={{ type: "spring", stiffness: 100 }}
           className="text-2xl font-bold text-[#0071cc]"
         >
           {t(title)}

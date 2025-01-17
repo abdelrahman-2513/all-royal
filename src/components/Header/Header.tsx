@@ -34,6 +34,9 @@ interface SubLink {
 interface Links {
   [key: string]: SubLink[];
 }
+type ExpandedLinksState = {
+  [key: string]: boolean;
+};
 
 function Header() {
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
@@ -133,6 +136,14 @@ function Header() {
       window.removeEventListener("resize", handleResize);
     };
   }, [handleResize]);
+  const [expandedLinks, setExpandedLinks] = useState<ExpandedLinksState>({});
+
+const toggleLink = (link: any) => {
+  setExpandedLinks((prev) => ({
+    ...prev,
+    [link]: !prev[link],
+  }));
+};
   const handleLanguageChange = async (
     e: React.ChangeEvent<HTMLSelectElement>
   ) => {
@@ -160,7 +171,7 @@ function Header() {
     setNestedOpen({});
   };
   const handleNavigation = (link: string) => {
-    setActiveLink((prev)=> prev === link ? "" : link);
+    setActiveLink(link);
     console.log(link);
     if(["Egypt","Saudi Arabia","Dubai","Jordan"].includes(link)) 
       {
@@ -408,32 +419,91 @@ function Header() {
           ))}
         </List>
       </Popper>
-      <Drawer anchor="left" open={mobileOpen} onClose={toggleMobileDrawer}>
-  <List sx={{ width: 250, backgroundColor: "#0c2340", height: "100%", color: "white" }} className="flex flex-col justify-content-center">
+  
+
+
+<Drawer anchor="left" open={mobileOpen} onClose={toggleMobileDrawer}>
+  <List
+    sx={{
+      width: 250,
+      backgroundColor: "#0c2340",
+      height: "100%",
+      color: "white",
+      maxHeight:"100vh",
+      overflow:"auto",
+      display:"flex",
+      flexDirection:"column",
+      
+    }}
+    
+  >
     {Object.keys(links).map((link, index) => (
       <React.Fragment key={index}>
-        <ListItem component={"button"} onClick={() => handleNavigation(link)}>
+        <ListItem
+          component={"button"}
+          onClick={() => {links[link].length > 0 ? toggleLink(link) : handleNavigation(link);}}
+        >
           <ListItemText primary={t(link)} />
-          {links[link].length > 0 ? activeLink === link ? <ExpandLess /> : <ExpandMore /> : null}
+          {links[link].length > 0
+            ? expandedLinks[link]
+              ? <ExpandLess />
+              : <ExpandMore />
+            : null}
         </ListItem>
+
         {links[link].length > 0 && (
-          <Collapse in={activeLink === link} timeout="auto" unmountOnExit>
+          <Collapse in={expandedLinks[link]} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               {links[link].map((subLink, subIndex) => (
-                <ListItem
-                  component={"button"}
-                  key={subIndex}
-                  sx={{ pl: 4 }}
-                  onClick={() => handleNavigation(subLink.title)}
-                >
-                  <ListItemText primary={t(subLink.title)} />
-                </ListItem>
+                <React.Fragment key={subIndex}>
+                  <ListItem
+                    component={"button"}
+                    sx={{ pl: 4 }}
+                    onClick={() =>
+                      subLink.subLinks && subLink.subLinks.length > 0
+                        ? toggleLink(subLink.title)
+                        : handleNavigation(subLink.title)
+                    }
+                  >
+                    <ListItemText primary={t(subLink.title)} />
+                    {subLink.subLinks && subLink.subLinks.length > 0
+                      ? expandedLinks[subLink.title]
+                        ? <ExpandLess />
+                        : <ExpandMore />
+                      : null}
+                  </ListItem>
+
+                  {subLink.subLinks && subLink.subLinks.length > 0 && (
+                    <Collapse
+                      in={expandedLinks[subLink.title]}
+                      timeout="auto"
+                      unmountOnExit
+                    >
+                      <List component="div" disablePadding>
+                        {subLink.subLinks.map((nestedLink, nestedIndex) => (
+                          <ListItem
+                            component={"button"}
+                            key={nestedIndex}
+                            sx={{ pl: 6 }}
+                            onClick={() => {
+                              navigate("/packages/" + nestedLink.id);
+                              window.location.reload();
+                            }}
+                          >
+                            <ListItemText primary={t(nestedLink.name)} />
+                          </ListItem>
+                        ))}
+                      </List>
+                    </Collapse>
+                  )}
+                </React.Fragment>
               ))}
             </List>
           </Collapse>
         )}
       </React.Fragment>
     ))}
+
     <Button
       variant="contained"
       sx={{ backgroundColor: "#007bff", width: "80%", margin: "20px auto" }}
@@ -443,6 +513,8 @@ function Header() {
     </Button>
   </List>
 </Drawer>
+
+
     </AppBar>
   );
 }

@@ -33,7 +33,7 @@ const WavyLines: React.FC<WavyLinesProps> = ({
       fill="none"
       stroke={color}
       strokeWidth={strokeWidth}
-      className={`wavy-lines ${isMopileHidden ? "hidden" : "block"}`}
+      className={`wavy-lines md:block ${isMopileHidden ? "hidden" : "block"}`}
     >
       {lines.map((d, index) => (
         <path key={index} d={d} />

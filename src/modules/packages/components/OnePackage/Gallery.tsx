@@ -22,7 +22,7 @@ const Gallery = ({ pack }: any) => {
       {/* Overview Section */}
       <div className="mt-6">
         <h2 className="text-2xl font-semibold text-blue-900">{t("Overview")}</h2>
-        <div className="flex md:flex-row flex-col justify-between items-center mt-4 gap-4">
+        <div className="flex md:flex-row flex-row justify-between items-center mt-4 gap-4">
           <div className="text-center mt-2">
             <div className="text-3xl text-gray-700 mb-2">⌛</div>
             {pack && pack.days && (

@@ -88,9 +88,9 @@ const CustomerForm = ({ setSubmitted, packageName, lowerPrices, plans, selectedI
   };
 
   return (
-    <div className="max-w-full w-1/2 mx-auto mb-8   bg-[#dfefff/80] shadow-md border-[#0071cc] border-[1px] rounded-2xl p-6 form-contain">
-      <WavyLines lineCount={4}  color="#044d88"/>
-      <WavyLines lineCount={4}  color="#044d88"/>
+    <div className="max-w-full w-3/4 md:w-1/2 mx-auto mb-8   bg-[#dfefff/80] shadow-md border-[#0071cc] border-[1px] rounded-2xl p-6 form-contain">
+      <WavyLines lineCount={4}  color="#044d88" isMopileHidden={true}/>
+      <WavyLines lineCount={4}  color="#044d88" isMopileHidden={true}/>
 
       {plans && plans.length > 0 && lowerPrices && lowerPrices.length > 0 && (
         <h2 className="text-xl font-bold text-orange-600 mb-4">

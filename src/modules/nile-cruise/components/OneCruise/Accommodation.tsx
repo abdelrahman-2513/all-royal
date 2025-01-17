@@ -8,7 +8,7 @@ const PriceAccommodation = ({ plans }: any) => {
       <h1 className="text-3xl font-bold mb-6">{t("Prices & Accommodation")}</h1>
 
       {plans && plans.length > 0 ? (
-        <div className={`grid grid-cols-1 md:grid-cols-2 gap-6`}>
+        <div className={`grid grid-cols-2  md:grid-cols-2 gap-6`}>
           {plans.map((plan: any, index: number) => {
             return plan &&
               plan.price_per_person_single_room &&

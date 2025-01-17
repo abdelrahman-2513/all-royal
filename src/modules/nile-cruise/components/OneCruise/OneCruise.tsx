@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/api/supabase";
 
-import { FaCircle } from "react-icons/fa";
 // import { useAppSelector } from "@/hooks/hooks";
 
 import Gallery from "./Gallery";
@@ -19,6 +18,87 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import BookForm from "@/modules/BookTour/Pages/BookForm";
 import PriceAccommodation from "@/modules/packages/components/OnePackage/Accommodation";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
+import { FaDownload } from "react-icons/fa";
+import Logoo from "@/assets/homeImages/Logooo.png"
+
+// PDF Download Function
+/**
+ * Downloads the itinerary as a PDF with a logo and trip title.
+ *
+ * @param {string} tripTitle - The title of the trip.
+ * @param {string} logoUrl - The URL or base64 of the logo.
+ * @param {Array} itineraryDays - The itinerary days data.
+ */
+
+const downloadItineraryPDF = async (tripTitle: string, logoUrl: string, itineraryDays: any[]) => {
+  const pdf = new jsPDF("p", "mm", "a4");
+
+  // Add Logo
+  if (logoUrl) {
+    pdf.addImage(logoUrl, "PNG", 10, 10, 40, 20); // x, y, width, height
+  }
+
+  // Add Trip Title in Blue and Bold
+  pdf.setFontSize(18);
+  pdf.setTextColor(4, 77, 136); // Blue Color (#044d88)
+  pdf.setFont("Helvetica", "bold"); // Bold Font
+  pdf.text(tripTitle, 60, 20); // x, y
+
+  // Starting Y position after header
+  let yPosition = 40;
+
+  // Iterate over itinerary days
+  itineraryDays.forEach((day: any, index: number) => {
+    // Add Day Title (Bold)
+    pdf.setFontSize(14);
+    pdf.setTextColor(0, 0, 0); // Black color
+    pdf.setFont("Helvetica", "bold"); // Bold font
+    pdf.text(`Day ${day.day}: ${day.title}`, 10, yPosition);
+    yPosition += 10;
+
+    // Add Activities (Bold "Activities:" label, normal for content)
+    if (day.activities) {
+      pdf.setFontSize(12);
+      pdf.setFont("Helvetica", "bold");
+      pdf.text(`Activities:`, 10, yPosition);
+      yPosition += 7;
+
+      pdf.setFont("Helvetica", "normal");
+      pdf.setTextColor(52, 73, 94); // Dark Gray for content
+      const activities = pdf.splitTextToSize(day.activities, 180);
+      pdf.text(activities, 15, yPosition);
+      yPosition += activities.length * 7;
+    }
+
+    // Add Meals (Bold "Meals:" label, normal for content)
+    if (day.meals && day.meals.length > 0) {
+      pdf.setFontSize(12);
+      pdf.setFont("Helvetica", "bold");
+      pdf.setTextColor(0, 0, 0); // Black
+      pdf.text(`Meals:`, 10, yPosition);
+      yPosition += 7;
+
+      pdf.setFont("Helvetica", "normal");
+      pdf.setTextColor(52, 73, 94); // Dark Gray for meals list
+      pdf.text(day.meals.join(", "), 15, yPosition);
+      yPosition += 10;
+    }
+
+    // Add spacing between days
+    yPosition += 10;
+
+    // Add a new page if content overflows
+    if (yPosition > 200) {
+      pdf.addPage();
+      yPosition = 20;
+    }
+  });
+
+  // Download the PDF
+  pdf.save(`${tripTitle.replace(/\s+/g, "_")}_Itinerary.pdf`);
+};
 
 function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
   event.preventDefault();
@@ -264,7 +344,7 @@ const OnePack = ({ pack, selectedId,packages }: any) => {
           ))}
         
       </div>
-      <button className="mt-6 px-4 py-2 bg-[#044d88] text-white rounded-md hover:bg-[#033366]">
+      <button className="mt-6 px-4 py-2 bg-[#044d88] text-white rounded-md hover:bg-[#033366]" onClick={() => downloadItineraryPDF(pack.NileCruisesName,Logoo,itinerary)}>
           {t("Download Itinerary")}
         </button>
             </div>
@@ -347,7 +427,7 @@ const OnePack = ({ pack, selectedId,packages }: any) => {
           ))}
         
       </div>
-      <button className="mt-6 px-4 py-2 bg-[#044d88] text-white rounded-md hover:bg-[#033366]">
+      <button className="mt-6 px-4 py-2 bg-[#044d88] text-white rounded-md hover:bg-[#033366]" onClick={() => downloadItineraryPDF(pack.NileCruisesName,Logoo,itinerary2)}>
           {t("Download Itinerary")}
         </button>
             </div>
